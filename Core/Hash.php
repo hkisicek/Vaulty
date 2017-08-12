@@ -6,14 +6,34 @@
  * Time: 11:25 AM
  */
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 class Hash
 {
-    public function createHash($password){
+    public static function createHash($password){
 
+        $pass = password_hash($password, PASSWORD_BCRYPT);
+        return $pass;
     }
 
-    public function generateCode(){
+    public static function generateCode($qtd){
 
+        $caracteres = 'ABCDEFGHIJKLMOPQRSTUVXWYZ0123456789/()?=!"$%&*';
+        $quantidadeCaracteres = strlen($caracteres);
+        $quantidadeCaracteres--;
+        $hash = NULL;
+
+        for ($x = 1; $x <= $qtd; $x++) {
+            $posicao = rand(0, $quantidadeCaracteres);
+            $hash .= substr($caracteres, $posicao, 1);
+        }
+        return $hash;
+    }
+
+    public static function verifyHash($password, $hash){
+
+        password_verify($password,$hash);
     }
 
 }

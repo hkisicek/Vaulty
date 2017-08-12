@@ -18,6 +18,8 @@ if(isset($_POST['username'])&&($_POST['password'])){
     $username=htmlentities($_POST['username']);
     $password=htmlentities($_POST['password']);
 
+    Hash::verifyHash($password);
+
     $login=new AuthController();
     $login->loginAction($username,$password);
 

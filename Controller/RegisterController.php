@@ -13,8 +13,13 @@ class RegisterController
 {
     public function RegisterUser($username,$password,$email){
 
+        $hashedPass=Hash::createHash($password);
+        Hash::generateCode(15);
+
         $db=new Database();
-        $hash=new Hash();
+
+
+
 
 
 
