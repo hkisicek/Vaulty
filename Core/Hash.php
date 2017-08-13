@@ -33,7 +33,7 @@ class Hash
 
     public static function verifyHash($password, $hash){
 
-        password_verify($password,$hash);
+        return password_verify($password,$hash);
     }
 
 }

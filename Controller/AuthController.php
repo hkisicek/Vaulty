@@ -17,18 +17,24 @@ class AuthController
     public function loginAction($username, $password){
 
         $db=new Database();
-        $result=$db->execute_query("select * from user where username=:username and password=:password", array('username'=>$username, 'password'=>$password));
+        $result=$db->execute_query("select * from user where username=:username", array('username'=>$username));
 
         if(!empty($result)) {
 
-            AuthController::$logged=true;
-            $session=new Session();
-            echo "Welcome!";
+            $hashedPass=$result['password'];
+            if(Hash::verifyHash($password,$hashedPass)) {
 
-        }else{
+                AuthController::$logged=true;
 
-            AuthController::$logged=false;
-            echo "Username or password are incorrect";
+                Session::startSession();
+                Session::set('username', $username);
+                echo "Welcome!";
+
+            }else{
+                AuthController::$logged=false;
+                echo "Username or password are incorrect";
+
+            }
         }
         return AuthController::$logged;
     }

@@ -10,7 +10,7 @@ class Session
 {
     protected static $started=false;
 
-    public function startSession(){
+    public static function startSession(){
 
         if(false===self::$started){
             session_start();
@@ -18,11 +18,17 @@ class Session
         }
     }
 
-    public function show(){
+    public static function get(){
 
+        return $_SESSION['key'];
     }
 
-    public function destroySession(){
+    public static function set($key,$value){
+
+        $_SESSION['key']=$value;
+    }
+
+    public static function destroySession(){
 
         if(self::$started==true){
             session_destroy();

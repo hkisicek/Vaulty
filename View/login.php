@@ -18,8 +18,6 @@ if(isset($_POST['username'])&&($_POST['password'])){
     $username=htmlentities($_POST['username']);
     $password=htmlentities($_POST['password']);
 
-    Hash::verifyHash($password);
-
     $login=new AuthController();
     $login->loginAction($username,$password);
 
@@ -30,7 +28,7 @@ elseif (isset($_POST['usernameR'])&&($_POST['passwordR'])&&($_POST['emailR'])){
     $passwordR=htmlentities($_POST['passwordR']);
     $emailR=htmlentities($_POST['emailR']);
 
-    $register=new RegisterController($usernameR,$passwordR,$emailR);
-    $register->RegisterUser();
+    $register=new RegisterController();
+    $register->RegisterUser($usernameR,$passwordR,$emailR);
     $register->sendMail();
 }

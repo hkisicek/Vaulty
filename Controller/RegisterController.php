@@ -17,15 +17,12 @@ class RegisterController
         Hash::generateCode(15);
 
         $db=new Database();
-
-
-
-
-
-
+        $db->insert_row("insert into user (user_id,email,password,username,active,role) values (default,:email,:password,:username,'1','2')", array(
+            'email'=>$email,
+            'password'=>$hashedPass,
+            'username'=>$username));
     }
 
     public function sendMail(){
-
     }
 }
