@@ -13,3 +13,4 @@ class View
             include $_SERVER['DOCUMENT_ROOT'].'/Vaulty/View/Templates/'.$name.'.phtml';
     }
 }
+

@@ -9,17 +9,12 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-class test{
-    public static $a;
-    public $b;
-}
+// the message
+$msg = "First line of text\nSecond line of text";
 
-$c=new test();
-$c::$a="majmun";
+// use wordwrap() if lines are longer than 70 characters
+$msg = wordwrap($msg,70);
 
-$d=new test();
-$d::$a="banana";
-
-test::$a="banana";
-
+// send email
+mail("someone@example.com","My subject",$msg);
 

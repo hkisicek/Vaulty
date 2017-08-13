@@ -49,6 +49,20 @@ class Database
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function query_execute($sql){
+
+        $db=Database::getInstance();
+
+        $stmt=$db->prepare($sql);
+
+        try{
+            $stmt->execute();
+        }catch (Exception $e){
+            die($e->getMessage());
+        }
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function insert_row($sql,$params){
 
         $db=Database::getInstance();

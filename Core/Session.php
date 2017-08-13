@@ -6,13 +6,17 @@
  * Time: 11:25 AM
  */
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 class Session
 {
     protected static $started=false;
 
     public static function startSession(){
 
-        if(false===self::$started){
+        if(self::$started === false){
+
             session_start();
             self::$started=true;
         }
@@ -25,7 +29,7 @@ class Session
 
     public static function set($key,$value){
 
-        $_SESSION['key']=$value;
+        $_SESSION[$key]=$value;
     }
 
     public static function destroySession(){

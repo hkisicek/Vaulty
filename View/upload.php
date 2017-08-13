@@ -16,4 +16,5 @@ $vw->getView('upload');
 if(isset($_POST['submit'])){
 
     UploadController::UploadFile();
+
 }

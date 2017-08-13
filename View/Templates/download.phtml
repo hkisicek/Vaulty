@@ -13,48 +13,19 @@
     <link rel="stylesheet" href="resources/css/style_login.css">
 </head>
 <body>
-<div class="container">
+<div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
 
-        <div class="row">
-            <div class="iconmelon">
-                <svg viewBox="0 0 100 32">
-                    <g filter="">
-                        <use xlink:href="#git"></use>
-                    </g>
-                </svg>
-            </div>
+    <div class="row">
+        <div class="iconmelon">
+            <svg viewBox="0 0 100 32">
+                <g filter="">
+                    <use xlink:href="#git"></use>
+                </g>
+            </svg>
         </div>
+    </div>
 
 
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="exampleInputEmail">File Title</label>
-            <input type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Enter file title" required>
-            <small id="titleHelp" class="form-text text-muted">This title will be displayed.</small>
-        </div>
-
-        <fieldset class="form-group">
-            <legend>Is this file public or private?</legend>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                    My file is public.
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-                    My file is private.
-                </label>
-            </div>
-        </fieldset>
-        Select image to upload:
-        <input type="file" name="fileToUpload" id="fileToUpload" required>
-        <input type="submit" class="btn btn-primary" value="Upload File" name="submit">
-    </form>
-
-
-        </div>
 <svg id="svg-source" height="0" version="1.1"
      xmlns="http://www.w3.org/2000/svg" style="position:absolute; margin-left: -100%"
      xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -300,3 +271,5 @@
 	c-0.049-0.366-0.046-0.739-0.025-1.11c0.009-0.125,0.024-0.25,0.042-0.375C12.122,17.814,12.141,17.732,12.164,17.65z"></path>
     </g>
 </svg>
+</body>
+</html>

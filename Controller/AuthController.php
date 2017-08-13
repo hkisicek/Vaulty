@@ -25,24 +25,23 @@ class AuthController
             if(Hash::verifyHash($password,$hashedPass)) {
 
                 AuthController::$logged=true;
-
-                Session::startSession();
-                Session::set('username', $username);
                 echo "Welcome!";
-
             }else{
+
                 AuthController::$logged=false;
                 echo "Username or password are incorrect";
-
             }
         }
         return AuthController::$logged;
     }
 
     public function logoutAction(){
+
         if (AuthController::$logged==true){
+
             session_destroy();
             AuthController::$logged=false;
+
         }else{
             echo "You're not logged in.";
         }

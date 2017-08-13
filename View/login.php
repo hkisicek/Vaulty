@@ -7,8 +7,8 @@
  */
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
 include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
+session_start();
 
 $vw=new View();
 $vw->getView('login');
@@ -20,6 +20,11 @@ if(isset($_POST['username'])&&($_POST['password'])){
 
     $login=new AuthController();
     $login->loginAction($username,$password);
+
+    if($login){
+        echo "asdhgdahs";
+        $_SESSION['username']=$username;
+    }
 
 }
 elseif (isset($_POST['usernameR'])&&($_POST['passwordR'])&&($_POST['emailR'])){
