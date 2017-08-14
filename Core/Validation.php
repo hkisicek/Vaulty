@@ -12,9 +12,6 @@ class Validation
 
     }
 
-    public function validPassword(){
-
-    }
 
     public function validEmail(){
 

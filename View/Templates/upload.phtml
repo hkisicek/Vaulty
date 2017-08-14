@@ -29,21 +29,27 @@
     <form action="upload.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="exampleInputEmail">File Title</label>
-            <input type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Enter file title" required>
+            <input type="text" class="form-control" id="title" name="title" aria-describedby="titleHelp" placeholder="Enter file title" required>
             <small id="titleHelp" class="form-text text-muted">This title will be displayed.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail">File Description</label>
+            <input type="text" class="form-control" id="description" name="description" aria-describedby="descriptionHelp" placeholder="Enter file description" required>
+            <small id="descriptionHelp" class="form-text text-muted">Describe your file.</small>
         </div>
 
         <fieldset class="form-group">
             <legend>Is this file public or private?</legend>
             <div class="form-check">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="1" checked>
                     My file is public.
                 </label>
             </div>
             <div class="form-check">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="0">
                     My file is private.
                 </label>
             </div>

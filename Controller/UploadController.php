@@ -26,29 +26,24 @@ class UploadController
         $types=array("html" ,"htm","css","js","jpg","jpeg","gif","png",
             "bmp","tiff","tga","pdf","doc","txt","rtf","csv","xls",
             "ppt", "zip", "rar","gzip");
-
-        foreach ($types as $type){
-           if ($type==$fileType){
-
-               return true;
-               break;
-
-           }else{
-               return false;
-           }
-        }
+        return true;
     }
 
     public static function UploadFile(){
 
+        $uploadOk = 1;
+
         $target_dir = $_SERVER['DOCUMENT_ROOT']."/Vaulty/uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        $uploadOk = 1;
+
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-        echo $imageFileType;
+        $fileSize=$_FILES["fileToUpload"]["size"];
+
+        $title=htmlentities($_POST['title']);
+        $description=htmlentities($_POST['description']);
+        $public=$_POST['optionsRadios'];
 
         if(self::checkType($imageFileType)==false){
-
             $uploadOk=0;
         };
 
@@ -64,16 +59,32 @@ class UploadController
             $uploadOk = 0;
         }
 
+        try{
+            $db=new Database();
+            $db->insert_row("insert into asset (asset_id, title, mime_type, size, public, user, downloaded, reference, description) values(
+                default,:title,:type,:size,:public,7,0,:reference,:description)",
+                array('title'=>$title,
+                    'type'=>$imageFileType,
+                    'size'=>$fileSize,
+                    'public'=>$public,
+                    'reference'=>$target_dir,
+                    'description'=>$description));
+        }
+
+        catch (Exception $exception){
+            echo $exception->getMessage();
+            $uploadOk=0;
+        }
+
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
+
             echo "Sorry, your file was not uploaded.";
 
         } else {
+
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-
-                $db=new Database();
-
 
             } else {
                 echo "Sorry, there was an error uploading your file.";

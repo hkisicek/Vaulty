@@ -24,5 +24,6 @@ class RegisterController
     }
 
     public function sendMail(){
+
     }
 }
