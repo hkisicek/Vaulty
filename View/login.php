@@ -24,6 +24,10 @@ if(isset($_POST['username'])&&($_POST['password'])){
     if($login){
         echo "asdhgdahs";
         $_SESSION['username']=$username;
+        if(isset($_SESSION['username'])){
+            echo "sesija je postavljena";
+        }
+
     }
 
 }

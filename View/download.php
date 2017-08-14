@@ -17,13 +17,17 @@ $vw->getView('download');
 $db=new Database();
 $result=$db->query_execute("select * from asset");
 
-echo '<table>';
+echo '<table id="files" class="display">';
+echo '<thead>';
 echo '<tr>';
 echo '<th>Title</th><th>Type</th><th>Size</th><th>Description</th><th>Downloads</th><th>Download Link</th>';
 echo '</tr>';
+echo '</thead>';
+echo '<tbody>';
 foreach ($result as $item){
     echo '<tr>';
     echo '<td>'.$item['title'].'</td><td>'.$item['mime_type'].'</td><td>'.$item['size'].'</td><td>'.$item['description'].'</td><td>'.$item['downloaded'].'</td><td>Link</td>';
     echo '</tr>';
 }
+echo '<tbody>';
 echo '</table>';
