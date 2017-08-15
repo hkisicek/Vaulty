@@ -1,3 +1,11 @@
+<?php
+if(session_status()===PHP_SESSION_NONE) {
+    session_start();
+}elseif(isset($_SESSION["role"]) && isset($_SESSION["username"])) {
+    $role = $_SESSION["role"];
+    $username = $_SESSION["username"];
+}
+?>
 <html>
 <head>
     <!-- Latest compiled and minified CSS -->
@@ -10,13 +18,35 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Custom Javascript -->
     <link href="http://localhost/Vaulty/Public/css/gradient.css" />
+    <link href="http://localhost/Vaulty/Public/css/navigation.css">
     <script src="http://localhost/Vaulty/Public/js/gradient.js"></script>
 </head>
 <body>
-
-<div id="gradient">
+<!--<div id="gradient">-->
 <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand navbar-brand-centered"><?php echo "Hello, ".$username;?></div>
+            </div>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-brand-centered">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="upload.php">Upload</a></li>
+                    <li><a href="download.php">Download</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
         <div class="row">
             <div class="iconmelon">
                 <svg viewBox="0 0 100 32">
@@ -306,3 +336,5 @@
 	c-0.049-0.366-0.046-0.739-0.025-1.11c0.009-0.125,0.024-0.25,0.042-0.375C12.122,17.814,12.141,17.732,12.164,17.65z"></path>
     </g>
 </svg>
+</body>
+</html>

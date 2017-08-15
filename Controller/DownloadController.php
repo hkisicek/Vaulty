@@ -37,8 +37,8 @@ class DownloadController
         if ($fd = fopen($fullPath, "r")) {
             $fsize = filesize($fullPath);
             $path_parts = pathinfo($fullPath);
-            $ext = strtolower($path_parts["extension"]);
-            switch ($ext) {
+            $extension = strtolower($path_parts["extension"]);
+            switch ($extension) {
                 case "pdf":
                     header("Content-type: application/pdf");
                     header("Content-Disposition: attachment; filename=\"" . $path_parts["basename"] . "\""); // use 'attachment' to force a file download

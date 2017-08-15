@@ -1,14 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: helena
- * Date: 8/11/17
- * Time: 12:34 PM
- */
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 session_start();
+
+include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 
 $vw=new View();
 $vw->getView('login');
@@ -19,25 +12,31 @@ if(isset($_POST['username'])&&($_POST['password'])){
     $password=htmlentities($_POST['password']);
 
     $login=new AuthController();
-    $login->loginAction($username,$password);
+    if($login->loginAction($username,$password)==true) {
 
-    if($login){
-        echo "asdhgdahs";
-        $_SESSION['username']=$username;
-        if(isset($_SESSION['username'])){
-            echo "sesija je postavljena";
-        }
+        $db=new Database();
+        $result=$db->execute_query("select * from user where username=:username", array('username'=>$username));
 
+        $_SESSION["username"] = $username;
+        $_SESSION["role"] = $result["role"];
+        $_SESSION["user_ID"]=$result["user_ID"];
     }
 
-}
-elseif (isset($_POST['usernameR'])&&($_POST['passwordR'])&&($_POST['emailR'])){
+
+} elseif (isset($_POST['usernameR'])&&($_POST['passwordR'])&&($_POST['emailR'])){
 
     $usernameR=htmlentities($_POST['usernameR']);
     $passwordR=htmlentities($_POST['passwordR']);
+    $passwordRP=htmlentities($_POST['passwordRP']);
     $emailR=htmlentities($_POST['emailR']);
 
-    $register=new RegisterController();
-    $register->RegisterUser($usernameR,$passwordR,$emailR);
-    $register->sendMail();
+    if(Validation::validUsername($usernameR) && Validation::validPassword($passwordR) && Validation::validEmail($emailR) && Validation::matchPassword($passwordR,$passwordRP)) {
+
+        $register = new RegisterController();
+        $register->RegisterUser($usernameR, $passwordR, $emailR);
+        $register->sendMail();
+    }else{
+        echo "<div>Inputs are not valid! Try again!</div>";
+        header("Location:upload.php");
+    }
 }

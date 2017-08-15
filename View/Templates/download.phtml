@@ -1,3 +1,13 @@
+<?php
+if(session_status()===PHP_SESSION_NONE) {
+session_start();
+}elseif(session_status()===PHP_SESSION_ACTIVE) {
+$role = $_SESSION["role"];
+$username = $_SESSION["username"];
+}
+$db=new Database();
+$result=$db->query_execute("select * from asset where public='1'");
+?>
 <html>
 <head>
     <!-- Latest compiled and minified CSS -->
@@ -18,14 +28,38 @@
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.material.min.js"></script>
+
     <script src="http://localhost/Vaulty/Public/js/dataTB.js"></script>
+
     <link href="http://localhost/Vaulty/Public/css/gradient.css" />
     <script src="http://localhost/Vaulty/Public/js/gradient.js"></script>
 </head>
 <body>
-<div id="gradient">
+<!--<div id="gradient">-->
 <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand navbar-brand-centered"><?php echo "Hello, ".$username;?></div>
+            </div>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-brand-centered">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="upload.php">Upload</a></li>
+                    <li><a href="download.php">Download</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
     <div class="row">
         <div class="iconmelon">
             <svg viewBox="0 0 100 32">
@@ -35,7 +69,36 @@
             </svg>
         </div>
     </div>
-
+    <?php
+    echo '<table id="files" class="display">';
+        echo '<thead>';
+        echo '<tr>';
+            echo '<th>File Title</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Size</th>
+            <th>Description</th>
+            <th>User</th>
+            <th>Downloads</th>
+            <th>Download Link</th>';
+            echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+        foreach ($result as $item){
+        echo '<tr>';
+            echo '<td>'.$item['title'].'</td>
+            <td>'.$item['reference'].'</td>
+            <td>'.$item['mime_type'].'</td>
+            <td>'.$item['size'].'</td>
+            <td>'.$item['description'].'</td>
+            <td>'.$item['user'].'</td>
+            <td>'.$item['downloaded'].'</td>
+            <td><a href="download.php?file='.$item['reference'].'">Download</a></td>';
+            echo '</tr>';
+        }
+        echo '</tbody>';
+        echo '</table>';
+?>
 </div>
 <svg id="svg-source" height="0" version="1.1"
      xmlns="http://www.w3.org/2000/svg" style="position:absolute; margin-left: -100%"

@@ -77,6 +77,5 @@ class Database
             die($e->getMessage());
         }
     }
-
 }
 

@@ -11,33 +11,54 @@ ini_set('display_errors', 1);
 
 class Session
 {
-    protected static $started=false;
+    protected static $_started = false;
 
-    public static function startSession(){
-
-        if(self::$started === false){
-
+    public static function startSession()
+    {
+        if (false === self::$_started) {
             session_start();
-            self::$started=true;
+            self::$_started = true;
         }
     }
 
-    public static function get(){
-
-        return $_SESSION['key'];
+    public static function get($key)
+    {
+        return $_SESSION[$key];
     }
 
-    public static function set($key,$value){
-
-        $_SESSION[$key]=$value;
+    public static function set($key, $value)
+    {
+        $_SESSION[$key] = $value;
     }
 
-    public static function destroySession(){
+    public static function display()
+    {
+        echo '<pre>';
+        var_dump($_SESSION);
+        echo '</pre>';
+    }
 
-        if(self::$started==true){
+    public static function destroy()
+    {
+        if (self::$_started == true) {
+            $_SESSION = array();
+
+            setcookie(session_name(), "", time() - 42000, "/");
+
             session_destroy();
         }
+    }
 
+    public static function flash($type, $message)
+    {
+        self::set('flashClass', $type);
+        self::set('flashMessage', $message);
+    }
+
+    public static function destroyFlash()
+    {
+        unset($_SESSION['flashClass']);
+        unset($_SESSION['flashMessage']);
     }
 
 }
