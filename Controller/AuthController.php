@@ -7,7 +7,6 @@
  */
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
 include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 
 class AuthController
@@ -22,10 +21,13 @@ class AuthController
         if(!empty($result)) {
 
             $hashedPass=$result['password'];
+            $role=$result['role'];
+            $userID=$result['user_ID'];
+
             if(Hash::verifyHash($password,$hashedPass)) {
 
                 AuthController::$logged=true;
-                echo "Welcome!";
+
             }else{
 
                 AuthController::$logged=false;

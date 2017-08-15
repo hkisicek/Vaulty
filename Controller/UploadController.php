@@ -5,20 +5,19 @@
  * Date: 8/11/17
  * Time: 11:24 AM
  */
+if(session_status()===PHP_SESSION_NONE){
+    session_start();
+}
+var_dump($_SESSION);
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-session_start();
 include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 
 class UploadController
 {
     public static function getInfo(){
 
-        $target_dir = $_SERVER['DOCUMENT_ROOT']."/Vaulty/uploads/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-        return $imageFileType;
     }
 
     public static function checkType($fileType){
@@ -35,8 +34,10 @@ class UploadController
 
         $target_dir = $_SERVER['DOCUMENT_ROOT']."/Vaulty/uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $target_name=basename($_FILES["fileToUpload"]["name"]);
 
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+        echo $imageFileType;
         $fileSize=$_FILES["fileToUpload"]["size"];
 
         $title=htmlentities($_POST['title']);
@@ -54,26 +55,9 @@ class UploadController
         }
 
         // Check file size
-        if ($_FILES["fileToUpload"]["size"] > 1048576) {
+        if ($_FILES["fileToUpload"]["size"] > 1073741824) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
-        }
-
-        try{
-            $db=new Database();
-            $db->insert_row("insert into asset (asset_id, title, mime_type, size, public, user, downloaded, reference, description) values(
-                default,:title,:type,:size,:public,7,0,:reference,:description)",
-                array('title'=>$title,
-                    'type'=>$imageFileType,
-                    'size'=>$fileSize,
-                    'public'=>$public,
-                    'reference'=>$target_dir,
-                    'description'=>$description));
-        }
-
-        catch (Exception $exception){
-            echo $exception->getMessage();
-            $uploadOk=0;
         }
 
         // Check if $uploadOk is set to 0 by an error
@@ -86,11 +70,26 @@ class UploadController
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 
+                try{
+                    $db=new Database();
+                    $db->insert_row("insert into asset (asset_id, title, mime_type, size, public, user, downloaded, reference, description) values(
+                default,:title,:type,:size,:public,:user,0,:reference,:description)",
+                        array('title'=>$title,
+                            'type'=>$imageFileType,
+                            'size'=>$fileSize,
+                            'public'=>$public,
+                            'user'=>$_SESSION['user_ID'],
+                            'reference'=>$target_name,
+                            'description'=>$description));
+                }
+
+                catch (Exception $exception){
+                    echo $exception->getMessage();
+                    $uploadOk=0;
+                }
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
         }
     }
-
-
 }
