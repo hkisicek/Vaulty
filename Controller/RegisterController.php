@@ -10,7 +10,12 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 
 class RegisterController
 {
-    public function RegisterUser($username,$password,$email){
+    /**
+     * @param $username
+     * @param $password
+     * @param $email
+     */
+    public function RegisterUser($username, $password, $email){
 
         $hashedPass=Hash::createHash($password);
         Hash::generateCode(15);
@@ -22,6 +27,9 @@ class RegisterController
             'username'=>$username));
     }
 
+    /**
+     * Function for mail sending
+     */
     public function sendMail(){
 
     }

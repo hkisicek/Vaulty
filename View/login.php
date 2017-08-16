@@ -20,8 +20,9 @@ if(isset($_POST['username'])&&($_POST['password'])){
         $_SESSION["username"] = $username;
         $_SESSION["role"] = $result["role"];
         $_SESSION["user_ID"]=$result["user_ID"];
-    }
 
+        setcookie('username', $username, time() + (86400 * 30), "/");
+    }
 
 } elseif (isset($_POST['usernameR'])&&($_POST['passwordR'])&&($_POST['emailR'])){
 
@@ -37,6 +38,6 @@ if(isset($_POST['username'])&&($_POST['password'])){
         $register->sendMail();
     }else{
         echo "<div>Inputs are not valid! Try again!</div>";
-        header("Location:upload.php");
+
     }
 }

@@ -1,3 +1,13 @@
+<?php
+if(session_status()===PHP_SESSION_NONE) {
+    session_start();
+}elseif(isset($_SESSION["role"]) && isset($_SESSION["username"])) {
+    $role = $_SESSION["role"];
+    $username = $_SESSION["username"];
+}
+$db=new Database();
+$result=$db->query_execute("select * from user");
+?>
 <html>
 <head>
     <!-- Latest compiled and minified CSS -->
@@ -27,6 +37,7 @@
 <body>
 <div id="gradient" >
     <div class="container">
+
     </div>
 </div>
 </body>

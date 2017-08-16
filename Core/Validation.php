@@ -8,6 +8,10 @@
 
 class Validation
 {
+    /**
+     * @param $username
+     * @return bool
+     */
     public static function validUsername($username){
 
         if(preg_match('/^[a-zA-Z0-9]*_?[a-zA-Z0-9]*$/',$username)){
@@ -15,7 +19,10 @@ class Validation
         }
     }
 
-
+    /**
+     * @param $email
+     * @return bool
+     */
     public static function validEmail($email){
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -23,6 +30,10 @@ class Validation
         }
     }
 
+    /**
+     * @param $password
+     * @return bool
+     */
     public static function validPassword($password){
 
         if(preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/',$password)){
@@ -30,7 +41,12 @@ class Validation
         }
     }
 
-    public static function matchPassword($password,$passwordRepeat){
+    /**
+     * @param $password
+     * @param $passwordRepeat
+     * @return bool
+     */
+    public static function matchPassword($password, $passwordRepeat){
 
         if($password===$passwordRepeat){
             return true;

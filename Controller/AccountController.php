@@ -6,17 +6,16 @@
  * Time: 1:54 PM
  */
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 
 class AccountController
 {
+    /**
+     * @param $email
+     */
     public function Activate($email){
 
         $code=Hash::generateCode(15);
-
-
     }
 }

@@ -9,6 +9,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+/**
+ * Class Database
+ */
 class Database
 {
     private static $instance = NULL;
@@ -17,6 +20,9 @@ class Database
 
     private function __clone() {}
 
+    /**
+     * @return null|PDO
+     */
     public static function getInstance() {
         if (!isset(self::$instance)) {
             try {
@@ -33,6 +39,12 @@ class Database
     function __destruct(){}
 
     //ovo isprobati!!!!
+
+    /**
+     * @param $sql
+     * @param $params
+     * @return mixed
+     */
     public function execute_query($sql, $params){
 
         $db=Database::getInstance();
@@ -49,6 +61,10 @@ class Database
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * @param $sql
+     * @return array
+     */
     public function query_execute($sql){
 
         $db=Database::getInstance();
@@ -63,7 +79,11 @@ class Database
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function insert_row($sql,$params){
+    /**
+     * @param $sql
+     * @param $params
+     */
+    public function insert_row($sql, $params){
 
         $db=Database::getInstance();
 

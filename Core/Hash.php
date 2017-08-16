@@ -11,12 +11,20 @@ ini_set('display_errors', 1);
 
 class Hash
 {
+    /**
+     * @param $password
+     * @return bool|string
+     */
     public static function createHash($password){
 
         $pass = password_hash($password, PASSWORD_BCRYPT);
         return $pass;
     }
 
+    /**
+     * @param $qtd
+     * @return null|string
+     */
     public static function generateCode($qtd){
 
         $caracteres = 'ABCDEFGHIJKLMOPQRSTUVXWYZ0123456789/()?=!"$%&*';
@@ -31,9 +39,13 @@ class Hash
         return $hash;
     }
 
+    /**
+     * @param $password
+     * @param $hash
+     * @return bool
+     */
     public static function verifyHash($password, $hash){
 
         return password_verify($password,$hash);
     }
-
 }

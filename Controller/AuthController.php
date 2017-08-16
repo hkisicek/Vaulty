@@ -8,10 +8,18 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 
+/**
+ * Class AuthController
+ */
 class AuthController
 {
     public static $logged=null;
 
+    /**
+     * @param $username
+     * @param $password
+     * @return null
+     */
     public function loginAction($username, $password){
 
         $db=new Database();
@@ -36,6 +44,9 @@ class AuthController
         return AuthController::$logged;
     }
 
+    /**
+     * Function for destroying session
+     */
     public function logoutAction(){
 
         if (AuthController::$logged==true){

@@ -8,6 +8,9 @@
 
 class View
 {
+    /**
+     * @param $name
+     */
     public function getView($name){
         if (file_exists($_SERVER['DOCUMENT_ROOT']).'/View/Templates/'.$name.'.phtml');
             include $_SERVER['DOCUMENT_ROOT'].'/Vaulty/View/Templates/'.$name.'.phtml';

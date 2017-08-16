@@ -13,6 +13,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 class UploadController
 {
 
+    /**
+     * Upload file function
+     */
     public static function UploadFile(){
 
         $uploadOk = 1;

@@ -11,6 +11,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 
 class DownloadController
 {
+    /**
+     * @param $file
+     */
     public static function countDownloads($file){
 
         try{
@@ -24,6 +27,9 @@ class DownloadController
         }
     }
 
+    /**
+     * @param $file
+     */
     public static function forceDownload($file)
     {
 
@@ -31,7 +37,6 @@ class DownloadController
         set_time_limit(0);
 
         $path = $_SERVER["DOCUMENT_ROOT"] . "/Vaulty/uploads/";
-
         $dl_file = preg_replace("([^\w\s\d\-_~,;:\[\]\(\).]|[\.]{2,})", '', $file);
         $dl_file = filter_var($dl_file, FILTER_SANITIZE_URL);
         $fullPath = $path . $dl_file;

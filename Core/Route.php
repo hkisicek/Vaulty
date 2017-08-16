@@ -29,8 +29,6 @@ class Route
                 echo $uriGetParams;
                // echo "match";
             }
-
         }
     }
-
 }
