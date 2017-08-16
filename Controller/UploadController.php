@@ -8,25 +8,10 @@
 if(session_status()===PHP_SESSION_NONE){
     session_start();
 }
-var_dump($_SESSION);
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 
 class UploadController
 {
-    public static function getInfo(){
-
-    }
-
-    public static function checkType($fileType){
-
-        $types=array("html" ,"htm","css","js","jpg","jpeg","gif","png",
-            "bmp","tiff","tga","pdf","doc","txt","rtf","csv","xls",
-            "ppt", "zip", "rar","gzip");
-        return true;
-    }
 
     public static function UploadFile(){
 

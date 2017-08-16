@@ -1,0 +1,16 @@
+.input-group{
+    width: 100% !important;
+}
+
+.input-group-addon{
+    width: 45% !important;
+    text-align: left !important;
+}
+
+.form-control {
+    width: 55% !important;
+}
+
+.container{
+    width:100% !important;
+}
