@@ -28,8 +28,6 @@ class AuthController
         if(!empty($result)) {
 
             $hashedPass=$result['password'];
-            $role=$result['role'];
-            $userID=$result['user_ID'];
 
             if(Hash::verifyHash($password,$hashedPass)) {
 
@@ -38,7 +36,6 @@ class AuthController
             }else{
 
                 AuthController::$logged=false;
-               // echo "Username or password are incorrect";
             }
         }
         return AuthController::$logged;
@@ -56,7 +53,7 @@ class AuthController
 
         }else{
 
-            //echo "You're not logged in.";
+            echo "You're not logged in.";
         }
     }
 }

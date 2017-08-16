@@ -20,11 +20,10 @@ class DownloadController
             $db=new Database();
             $db->insert_row("update asset set downloaded=downloaded+1 where reference=:file", array('file'=>$file));
 
-        } catch (Exception $e) {
+        } catch (Exception $e){
             $e->getMessage();
         }
     }
-
     /**
      * @param $file
      */
