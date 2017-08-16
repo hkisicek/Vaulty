@@ -6,29 +6,23 @@
  * Time: 9:21 AM
  */
 
-class Route
+abstract class Route
 {
-    private $_uri=array();
-
-    public function add($uri){
-
-        $this->_uri[]=$uri;
+    public function __construct()
+    {
+        Session::startSession();
+        $this->view=new View();
+        $this->db=Database::getInstance();
     }
 
-    public function submit(){
+    abstract public function index();
 
-        $uriGetParams=isset($_GET['uri']) ? $_GET['uri']: '/';
-
-        foreach ($this->_uri as $key=>$value){
-
-            echo $value;
-
-            if(preg_match("#^$value$#",$uriGetParams)){
-
-                echo $value;
-                echo $uriGetParams;
-               // echo "match";
-            }
+    public function redirect($location)
+    {
+        if(!isset($location)){
+            return;
         }
+
+        header('Location'.$location);
     }
 }

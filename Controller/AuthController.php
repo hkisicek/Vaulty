@@ -22,7 +22,7 @@ class AuthController
      */
     public function loginAction($username, $password){
 
-        $db=new Database();
+        $db=Database::getInstance();
         $result=$db->execute_query("select * from user where username=:username", array('username'=>$username));
 
         if(!empty($result)) {

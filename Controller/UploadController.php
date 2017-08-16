@@ -59,7 +59,7 @@ class UploadController
                 echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 
                 try{
-                    $db=new Database();
+                    $db=Database::getInstance();
                     $db->insert_row("insert into asset (asset_id, title, mime_type, size, public, user, downloaded, reference, description) values(
                 default,:title,:type,:size,:public,:user,0,:reference,:description)",
                         array('title'=>$title,

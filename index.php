@@ -11,13 +11,11 @@ ini_set('display_errors', 1);
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 
-$route=new Route();
+$route=new Router();
 
-$route->add('/');
-$route->add('/login');
-$route->add('/upload');
-$route->add('/download');
+
+$route->add('/login','login#index');
+
 
 print_r($route);
 
-$route->submit();

@@ -18,7 +18,7 @@ class DownloadController
 
         try{
 
-            $db=new Database();
+            $db=Database::getInstance();
             $db->insert_row("update asset set downloaded=downloaded+1 where reference=:file", array('file'=>$file));
 
         }catch (Exception $e){

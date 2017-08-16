@@ -14,14 +14,16 @@ if(isset($_POST['username'])&&($_POST['password'])){
     $login=new AuthController();
     if($login->loginAction($username,$password)==true) {
 
-        $db=new Database();
+        $db=Database::getInstance();
         $result=$db->execute_query("select * from user where username=:username", array('username'=>$username));
 
         $_SESSION["username"] = $username;
         $_SESSION["role"] = $result["role"];
         $_SESSION["user_ID"]=$result["user_ID"];
 
-        setcookie('username', $username, time() + (86400 * 30), "/");
+        header("Location:http://localhost/Vaulty/View/upload.php");
+        exit();
+        //setcookie('username', $username, time() + (86400 * 30), "/");
     }
 
 } elseif (isset($_POST['usernameR'])&&($_POST['passwordR'])&&($_POST['emailR'])){
