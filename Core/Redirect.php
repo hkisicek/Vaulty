@@ -17,9 +17,9 @@ class Redirect{
         {
             header('Location: '.$url);
             exit;
-        }
-        else
-        {
+            
+        }else {
+
             echo '<script type="text/javascript">';
             echo 'window.location.href="'.$url.'";';
             echo '</script>';

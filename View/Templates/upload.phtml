@@ -23,8 +23,18 @@ if(session_status()===PHP_SESSION_NONE) {
     <link href="http://localhost/Vaulty/Public/css/input.css" />
 </head>
 <body>
-<!--<div id="gradient">-->
-<div class="container" width="100%">
+
+<div class="container">
+    <style>
+        .container {
+            width: 100%;
+        }
+        body {
+            width: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -338,4 +348,5 @@ if(session_status()===PHP_SESSION_NONE) {
     </g>
 </svg>
 </body>
+<script src="http://localhost/Vaulty/Public/js/back.js"></script>
 </html>

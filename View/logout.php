@@ -1,5 +1,7 @@
 <?php
+include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 session_start();
 session_unset();
-header("Location:login.php");
+Redirect::redirectUrl('login.php');
+
 ?>
