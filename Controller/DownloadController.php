@@ -14,16 +14,14 @@ class DownloadController
     /**
      * @param $file
      */
-    public static function countDownloads($file){
-
-        try{
-
-            $db=Database::getInstance();
+    public static function countDownloads($file)
+    {
+        try {
+            $db=new Database();
             $db->insert_row("update asset set downloaded=downloaded+1 where reference=:file", array('file'=>$file));
 
-        }catch (Exception $e){
-
-            echo $e->getMessage();
+        } catch (Exception $e) {
+            $e->getMessage();
         }
     }
 
@@ -32,7 +30,6 @@ class DownloadController
      */
     public static function forceDownload($file)
     {
-
         ignore_user_abort(true);
         set_time_limit(0);
 

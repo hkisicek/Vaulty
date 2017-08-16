@@ -14,8 +14,8 @@ class AccountController
     /**
      * @param $email
      */
-    public function Activate($email){
-
+    public function Activate($email)
+    {
         $code=Hash::generateCode(15);
     }
 }

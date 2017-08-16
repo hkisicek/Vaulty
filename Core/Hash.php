@@ -36,6 +36,7 @@ class Hash
             $posicao = rand(0, $quantidadeCaracteres);
             $hash .= substr($caracteres, $posicao, 1);
         }
+
         return $hash;
     }
 

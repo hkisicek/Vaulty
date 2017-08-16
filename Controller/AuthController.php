@@ -20,9 +20,9 @@ class AuthController
      * @param $password
      * @return null
      */
-    public function loginAction($username, $password){
-
-        $db=Database::getInstance();
+    public function loginAction($username, $password)
+    {
+        $db=new Database();
         $result=$db->execute_query("select * from user where username=:username", array('username'=>$username));
 
         if(!empty($result)) {
@@ -38,7 +38,7 @@ class AuthController
             }else{
 
                 AuthController::$logged=false;
-                echo "Username or password are incorrect";
+               // echo "Username or password are incorrect";
             }
         }
         return AuthController::$logged;
@@ -47,15 +47,16 @@ class AuthController
     /**
      * Function for destroying session
      */
-    public function logoutAction(){
-
+    public function logoutAction()
+    {
         if (AuthController::$logged==true){
 
             session_destroy();
             AuthController::$logged=false;
 
         }else{
-            echo "You're not logged in.";
+
+            //echo "You're not logged in.";
         }
     }
 }

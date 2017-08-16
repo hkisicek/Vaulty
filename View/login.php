@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 
 $vw=new View();
@@ -14,15 +15,15 @@ if(isset($_POST['username'])&&($_POST['password'])){
     $login=new AuthController();
     if($login->loginAction($username,$password)==true) {
 
-        $db=Database::getInstance();
+        $db=new Database();
         $result=$db->execute_query("select * from user where username=:username", array('username'=>$username));
 
         $_SESSION["username"] = $username;
         $_SESSION["role"] = $result["role"];
         $_SESSION["user_ID"]=$result["user_ID"];
 
-        header("Location:http://localhost/Vaulty/View/upload.php");
-        exit();
+        Redirect::redirectUrl('index.php');
+
         //setcookie('username', $username, time() + (86400 * 30), "/");
     }
 
@@ -38,8 +39,10 @@ if(isset($_POST['username'])&&($_POST['password'])){
         $register = new RegisterController();
         $register->RegisterUser($usernameR, $passwordR, $emailR);
         $register->sendMail();
+
     }else{
         echo "<div>Inputs are not valid! Try again!</div>";
 
     }
+
 }

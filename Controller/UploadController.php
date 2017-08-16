@@ -12,12 +12,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 
 class UploadController
 {
-
     /**
      * Upload file function
      */
-    public static function UploadFile(){
-
+    public static function UploadFile()
+    {
         $uploadOk = 1;
 
         $target_dir = $_SERVER['DOCUMENT_ROOT']."/Vaulty/uploads/";
@@ -59,7 +58,7 @@ class UploadController
                 echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 
                 try{
-                    $db=Database::getInstance();
+                    $db=new Database();
                     $db->insert_row("insert into asset (asset_id, title, mime_type, size, public, user, downloaded, reference, description) values(
                 default,:title,:type,:size,:public,:user,0,:reference,:description)",
                         array('title'=>$title,

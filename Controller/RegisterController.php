@@ -15,18 +15,17 @@ class RegisterController
      * @param $password
      * @param $email
      */
-    public function RegisterUser($username, $password, $email){
-
+    public function RegisterUser($username, $password, $email)
+    {
         $hashedPass=Hash::createHash($password);
         Hash::generateCode(15);
 
-        $db=Database::getInstance();
+        $db=new Database();
         $db->insert_row("insert into user (user_id,email,password,username,active,role) values (default,:email,:password,:username,'1','2')", array(
             'email'=>$email,
             'password'=>$hashedPass,
             'username'=>$username));
     }
-
     /**
      * Function for mail sending
      */
