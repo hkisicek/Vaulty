@@ -20,21 +20,9 @@ if(session_status()===PHP_SESSION_NONE) {
     <link href="http://localhost/Vaulty/Public/css/gradient.css" />
     <link href="http://localhost/Vaulty/Public/css/navigation.css">
     <script src="http://localhost/Vaulty/Public/js/gradient.js"></script>
-    <link href="http://localhost/Vaulty/Public/css/input.css" />
 </head>
 <body>
 
-<div class="container">
-    <style>
-        .container {
-            width: 100%;
-        }
-        body {
-            width: 100%;
-            margin: 0;
-            overflow: hidden;
-        }
-    </style>
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -60,7 +48,7 @@ if(session_status()===PHP_SESSION_NONE) {
     </nav>
         <div class="row">
             <div class="iconmelon">
-                <svg viewBox="-50 0 130 32">
+                <svg viewBox="-70 0 185 32">
                     <g filter="">
                         <use xlink:href="#git"></use>
                     </g>
@@ -100,7 +88,17 @@ if(session_status()===PHP_SESSION_NONE) {
         <input type="file" name="fileToUpload" id="fileToUpload" required>
         <input type="submit" class="btn btn-primary" value="Upload File" name="submit">
     </form>
+    <style>
+        form{
+            position:fixed;
+            top: 50%;
+            left: 37%;
+            width:40em;
+            height:40em;
+        }
+    </style>
 </div>
+
 </div>
 <svg id="svg-source" height="0" version="1.1"
      xmlns="http://www.w3.org/2000/svg" style="position:absolute; margin-left: -100%"
@@ -348,5 +346,4 @@ if(session_status()===PHP_SESSION_NONE) {
     </g>
 </svg>
 </body>
-<script src="http://localhost/Vaulty/Public/js/back.js"></script>
 </html>

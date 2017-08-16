@@ -8,15 +8,15 @@
 if(session_status()===PHP_SESSION_NONE){
     session_start();
 }
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 
 class UploadController
 {
-    /**
-     * Upload file function
-     */
-    public static function UploadFile()
-    {
+    public static function UploadFile(){
+
         $uploadOk = 1;
 
         $target_dir = $_SERVER['DOCUMENT_ROOT']."/Vaulty/uploads/";
@@ -31,31 +31,31 @@ class UploadController
         $description=htmlentities($_POST['description']);
         $public=$_POST['optionsRadios'];
 
-        if(self::checkType($imageFileType)==false){
-            $uploadOk=0;
-        };
 
         // Check if file already exists
         if (file_exists($target_file)) {
-            echo "Sorry, file already exists.";
+
+            echo "<div class=\"alert alert-danger\"><strong>Sorry, file already exists.</strong></div>";
             $uploadOk = 0;
         }
 
         // Check file size
         if ($_FILES["fileToUpload"]["size"] > 1073741824) {
-            echo "Sorry, your file is too large.";
+
+            echo "<div class=\"alert alert-danger\"><strong>Sorry, your file is too large.</strong></div>";
             $uploadOk = 0;
         }
 
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
 
-            echo "Sorry, your file was not uploaded.";
+            echo "<div class=\"alert alert-danger\"><strong>Sorry, your file was not uploaded.</strong></div>";
 
         } else {
 
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+
+                echo "<div class=\"alert alert-info\" style='bottom: 0;'><strong>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</strong></div>";
 
                 try{
                     $db=new Database();
@@ -75,7 +75,8 @@ class UploadController
                     $uploadOk=0;
                 }
             } else {
-                echo "Sorry, there was an error uploading your file.";
+
+                echo "<div class=\"alert alert-danger\"><strong>Sorry, there was an error uploading your file.</strong></div>";
             }
         }
     }

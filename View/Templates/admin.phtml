@@ -37,7 +37,32 @@ $result=$db->query_execute("select * from user");
 <body>
 <div id="gradient" >
     <div class="container">
-
+        <?php
+        echo '<table id="files" class="display">';
+        echo '<thead>';
+        echo '<tr>';
+        echo '<th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Active</th>
+            <th>Activate</th>
+            <th>Deactivate</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+        foreach ($result as $item){
+            echo '<tr>';
+            echo '<td>'.$item['username'].'</td>
+            <td>'.$item['email'].'</td>
+            <td>'.$item['role'].'</td>
+            <td>'.$item['active'].'</td>
+            <td><a href="admin.php?idA='.$item['user_ID'].'">Activate</td>
+            <td><a href="admin.php?idD='.$item['user_ID'].'" >Deactivate</td>';
+            echo '</tr>';
+        }
+        echo '</tbody>';
+        echo '</table>';
+        ?>
     </div>
 </div>
 </body>

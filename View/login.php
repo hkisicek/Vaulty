@@ -44,8 +44,7 @@ if(isset($_POST['username'])&&($_POST['password'])){
         $register->sendMail();
 
     }else{
+
         echo "<div class=\"alert alert-danger\"><strong>Inputs are not valid! Try again!</strong></div>";
-
     }
-
 }

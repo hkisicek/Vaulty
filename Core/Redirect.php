@@ -17,7 +17,7 @@ class Redirect{
         {
             header('Location: '.$url);
             exit;
-            
+
         }else {
 
             echo '<script type="text/javascript">';
@@ -28,5 +28,4 @@ class Redirect{
             echo '</noscript>'; exit;
         }
     }
-
 }

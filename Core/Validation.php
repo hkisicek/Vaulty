@@ -18,7 +18,6 @@ class Validation
             return true;
         }
     }
-
     /**
      * @param $email
      * @return bool
@@ -29,7 +28,6 @@ class Validation
             return false;
         }
     }
-
     /**
      * @param $password
      * @return bool
@@ -40,7 +38,6 @@ class Validation
             return true;
         }
     }
-
     /**
      * @param $password
      * @param $passwordRepeat

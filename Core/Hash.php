@@ -20,7 +20,6 @@ class Hash
         $pass = password_hash($password, PASSWORD_BCRYPT);
         return $pass;
     }
-
     /**
      * @param $qtd
      * @return null|string
@@ -39,7 +38,6 @@ class Hash
 
         return $hash;
     }
-
     /**
      * @param $password
      * @param $hash

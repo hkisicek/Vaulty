@@ -15,7 +15,6 @@ ini_set('display_errors', 1);
 class Session
 {
     protected static $_started = false;
-
     /**
      * Function for starting session
      */
@@ -26,7 +25,6 @@ class Session
             self::$_started = true;
         }
     }
-
     /**
      * @param $key
      * @return mixed
@@ -35,7 +33,6 @@ class Session
     {
         return $_SESSION[$key];
     }
-
     /**
      * @param $key
      * @param $value
@@ -44,9 +41,8 @@ class Session
     {
         $_SESSION[$key] = $value;
     }
-
     /**
-     *
+     * Var dump on session
      */
     public static function display()
     {
@@ -54,7 +50,6 @@ class Session
         var_dump($_SESSION);
         echo '</pre>';
     }
-
     /**
      * Function for destoying session
      */
@@ -68,7 +63,6 @@ class Session
             session_destroy();
         }
     }
-
     /**
      * @param $type
      * @param $message
@@ -78,7 +72,6 @@ class Session
         self::set('flashClass', $type);
         self::set('flashMessage', $message);
     }
-
     /**
      * Function for unsetting session
      */

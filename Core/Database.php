@@ -15,11 +15,8 @@ ini_set('display_errors', 1);
 class Database
 {
     private static $instance = NULL;
-
     public function __construct() {}
-
     private function __clone() {}
-
     /**
      * @return null|PDO
      */
@@ -37,9 +34,6 @@ class Database
     }
 
     function __destruct(){}
-
-    //ovo isprobati!!!!
-
     /**
      * @param $sql
      * @param $params
@@ -60,7 +54,6 @@ class Database
         }
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
     /**
      * @param $sql
      * @return array
@@ -78,7 +71,6 @@ class Database
         }
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
     /**
      * @param $sql
      * @param $params
