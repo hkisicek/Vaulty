@@ -1,16 +1,40 @@
-.input-group{
-    width: 100% !important;
+.container {
+    margin-right: 0em !important;
+    /*margin-right: 8em !important;*/
+
+}
+
+#navbar-brand-centered > ul > li > a{
+    font-size: 20px;
+}
+
+.center-block {
+    float: none !important
 }
 
 .input-group-addon{
-    width: 45% !important;
-    text-align: left !important;
+    width: 20% !important;
+    text-align:left !important;
+}
+.input-group {
+    width: 100%;
+    padding-bottom: 10px;
 }
 
-.form-control {
-    width: 55% !important;
+#btn{
+    position: absolute !important;
+    left: 40%;
+    right: 40%;
 }
 
-.container{
-    width:100% !important;
+@media only screen and (max-width: 991px) {
+    .padding{
+        padding-left: 5em;
+        padding-right: 5em;
+    }
+
+    .margin{
+        margin-left: 5em !important;
+        margin-right: 5em !important;;
+    }
 }

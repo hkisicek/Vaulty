@@ -1,23 +1,33 @@
 <html>
-
 <head>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <link href="http://localhost/Vaulty/Public/css/back.css" />
-    <link href="http://localhost/Vaulty/Public/css/input.css" />
-    <script src="http://localhost/Vaulty/Public/js/back.js"></script>
+    <!-- Material design-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css" type="text/css">
+    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.material.min.css" type="text/css">
+
+    <!--Datatables -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.material.min.js"></script>
+    <script src="http://localhost/Vaulty/Public/js/dataTB.js"></script>
+
 </head>
 
 <canvas id="canv" width="32" height="32"></canvas>
 
 <style>
+
     body {
         width: 100%;
         margin: 0;
@@ -35,12 +45,19 @@
         left: 0;
     }
 
-    #container {
-        text-align: center;
-        max-width: 960px;
-        width: 90%;
-        height: auto;
-        margin: 2em auto 2em;
+    .input-group-addon{
+        width: 20% !important;
+        text-align:left !important;
+    }
+    .input-group {
+        width: 100%;
+        padding-bottom: 5px;
+    }
+
+    .alert-danger{
+    position: absolute !important;
+        left: 10px !important;
+        top: 10px !important;
     }
 
 </style>
@@ -82,6 +99,7 @@
                             <button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>

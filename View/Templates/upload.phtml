@@ -13,13 +13,24 @@ if(session_status()===PHP_SESSION_NONE) {
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- Custom Javascript -->
-    <link href="http://localhost/Vaulty/Public/css/gradient.css" />
-    <link href="http://localhost/Vaulty/Public/css/navigation.css">
-    <script src="http://localhost/Vaulty/Public/js/gradient.js"></script>
+
+    <!-- Material design-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css" type="text/css">
+    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.material.min.css" type="text/css">
+
+    <!--Datatables -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.material.min.js"></script>
+    <script src="http://localhost/Vaulty/Public/js/dataTB.js"></script>
+
+    <!-- Custom CSS -->
+    <link href="/Public/css/input.css">
 </head>
 <body>
 
@@ -90,11 +101,12 @@ if(session_status()===PHP_SESSION_NONE) {
     </form>
     <style>
         form{
-            position:fixed;
+            position:relative;
             top: 50%;
-            left: 37%;
-            width:40em;
-            height:40em;
+            left: 25%;
+            right:25%;
+            width:50%;
+            height:60em;
         }
     </style>
 </div>
