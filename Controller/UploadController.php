@@ -11,15 +11,29 @@ if(session_status()===PHP_SESSION_NONE){
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
 
 class UploadController
 {
+    public function getFileExtension(){
+
+    }
+
+    public static function createDir(){
+
+        $path=$_SERVER['DOCUMENT_ROOT']."/uploads";
+
+        if(!is_dir($path)) {
+            mkdir($path, 0777, true);
+        }
+    }
+
     public static function UploadFile(){
 
         $uploadOk = 1;
+        self::createDir();
 
-        $target_dir = $_SERVER['DOCUMENT_ROOT']."/Vaulty/uploads/";
+        $target_dir = $_SERVER['DOCUMENT_ROOT']."/uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $target_name=basename($_FILES["fileToUpload"]["name"]);
 

@@ -2,7 +2,7 @@
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
 
 $vw=new View();
 $vw->getView('login');

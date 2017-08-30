@@ -3,7 +3,7 @@ if(session_status()===PHP_SESSION_NONE) {
     session_start();
 }
 
-include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
 
 if(!isset($_SESSION['username'])){
 

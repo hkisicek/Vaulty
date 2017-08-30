@@ -9,9 +9,9 @@
 function __autoload($class)
 {
     $dirs = array(
-        '/Vaulty/Controller/',
-        '/Vaulty/Core/',
-        '/Vaulty/',
+        '/Controller/',
+        '/Core/',
+        '/',
     );
 
     foreach ($dirs as $dir) {

@@ -7,7 +7,7 @@
  */
 
 
-include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
 
 class DownloadController
 {
@@ -29,10 +29,15 @@ class DownloadController
      */
     public static function forceDownload($file)
     {
+        $targetFile = $_SERVER['DOCUMENT_ROOT']."/uploads/".$file;
+        if (!file_exists($targetFile)) {
+            die("Sorry, file doesn't exist. :(");
+        }
+
         ignore_user_abort(true);
         set_time_limit(0);
 
-        $path = $_SERVER["DOCUMENT_ROOT"] . "/Vaulty/uploads/";
+        $path = $_SERVER["DOCUMENT_ROOT"] . "/uploads/";
         $dl_file = preg_replace("([^\w\s\d\-_~,;:\[\]\(\).]|[\.]{2,})", '', $file);
         $dl_file = filter_var($dl_file, FILTER_SANITIZE_URL);
         $fullPath = $path . $dl_file;
