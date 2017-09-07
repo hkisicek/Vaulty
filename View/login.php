@@ -1,8 +1,11 @@
 <?php
-session_start();
+include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
+
+Session::startSession();
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
+
 
 $vw=new View();
 $vw->getView('login');
@@ -48,3 +51,5 @@ if(isset($_POST['username'])&&($_POST['password'])){
         echo "<div class=\"alert alert-danger\"><strong>Inputs are not valid! Try again!</strong></div>";
     }
 }
+
+?>

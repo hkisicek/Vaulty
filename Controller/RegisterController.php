@@ -6,7 +6,7 @@
  * Time: 11:24 AM
  */
 
-include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
 
 class RegisterController
 {

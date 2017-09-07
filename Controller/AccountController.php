@@ -6,7 +6,6 @@
  * Time: 1:54 PM
  */
 
-
 include_once $_SERVER['DOCUMENT_ROOT'].'/Vaulty/Core/Autoload.php';
 
 class AccountController
@@ -19,7 +18,8 @@ class AccountController
         $code=Hash::generateCode(15);
     }
 
-    public static function activate(){
+    public static function activate($email){
+
 
     }
 
