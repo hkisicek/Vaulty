@@ -9,6 +9,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+require_once ('config.php');
+
 /**
  * Class Database
  */
@@ -24,10 +26,10 @@ class Database
         if (!isset(self::$instance)) {
             try {
                 $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-                self::$instance = new PDO('mysql:host=localhost;dbname=FileVault', 'root', '123456', $pdo_options);
+                self::$instance = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS, $pdo_options);
             }
             catch (PDOException $exception){
-                throw new MyDatabaseException( $exception->getMessage( ) , (int)$exception->getCode( ) );
+                throw new Exception( $exception->getMessage( ) , (int)$exception->getCode( ) );
             }
         }
         return self::$instance;

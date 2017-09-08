@@ -32,4 +32,14 @@ class RegisterController
     public function sendMail(){
 
     }
+
+    public static function activate($email)
+    {
+
+    }
+
+    public static function deactivate()
+    {
+
+    }
 }
