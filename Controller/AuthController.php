@@ -8,6 +8,8 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 /**
  * Class AuthController
  */
@@ -54,6 +56,16 @@ class AuthController
         }else{
 
             echo "You're not logged in.";
+        }
+    }
+
+    public static function getData()
+    {
+        if(isset($_GET['username']) && isset($_GET['password'])) {
+            $db = new Database();
+            $result = $db->query_execute("select username,password from user");
+
+            return json_encode($result);
         }
     }
 }

@@ -9,7 +9,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once ('config.php');
+include_once $_SERVER['DOCUMENT_ROOT'].'/config.php';
 
 /**
  * Class Database
@@ -41,7 +41,7 @@ class Database
      * @param $params
      * @return mixed
      */
-    public function execute_query($sql, $params){
+    public static function execute_query($sql, $params){
 
         $db=Database::getInstance();
 
@@ -60,7 +60,7 @@ class Database
      * @param $sql
      * @return array
      */
-    public function query_execute($sql){
+    public static function query_execute($sql){
 
         $db=Database::getInstance();
 
@@ -77,7 +77,7 @@ class Database
      * @param $sql
      * @param $params
      */
-    public function insert_row($sql, $params){
+    public static function insert_row($sql, $params){
 
         $db=Database::getInstance();
 

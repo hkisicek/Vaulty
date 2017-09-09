@@ -15,12 +15,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css" type="text/css">
     <link href="https://cdn.datatables.net/1.10.15/css/dataTables.material.min.css" type="text/css">
 
-    <!--Datatables -->
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.material.min.js"></script>
-    <script src="/Public/js/dataTB.js"></script>
 
 </head>
 
@@ -79,22 +73,22 @@
             </div>
 
             <div class="panel-body" >
-                <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
+                <form name="logform" id="logform" class="form-horizontal" enctype="multipart/form-data" method="">
 
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i>Username</span>
-                        <input id="user" type="text" class="form-control" name="username" value="" placeholder="User">
+                        <input id="user" type="text" class="form-control" name="username" value="" placeholder="User" required>
                     </div>
 
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i>Password</span>
-                        <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                        <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
                     </div>
 
                     <div class="form-group">
                         <!-- Button -->
                         <div class="col-sm-12 controls">
-                            <button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
+                            <button type="submit"  name="button" class="btn btn-primary pull-right button"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
                         </div>
                     </div>
 
@@ -394,5 +388,5 @@
     </g>
 </svg>
 </body>
-<script src="/Public/js/back.js"></script>
+<script src="/Public/js/login.js"></script>
 </html>
