@@ -6,50 +6,76 @@ Session::startSession();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-
-$vw=new View();
-$vw->getView('login');
-
-if(isset($_POST['username'])&&($_POST['password'])){
-
-    $username=htmlentities($_POST['username']);
-    $password=htmlentities($_POST['password']);
+if(isset($_POST['ajaxLogin'])) {
+    $usr = $_POST['username'];
+    $pass = $_POST['password'];
 
     $login=new AuthController();
-    if($login->loginAction($username,$password)==true) {
+    if($login->loginAction($usr,$pass)==true) {
 
         $db=new Database();
-        $result=$db->execute_query("select * from user where username=:username", array('username'=>$username));
+        $result=$db->execute_query("select * from user where username=:username", array('username'=>$usr));
 
-        $_SESSION["username"] = $username;
+        $_SESSION["username"] = $usr;
         $_SESSION["role"] = $result["role"];
         $_SESSION["user_ID"]=$result["user_ID"];
 
-        Redirect::redirectUrl('upload.php');
-
-        //setcookie('username', $username, time() + (86400 * 30), "/");
+        echo json_encode(array(
+            'status'=>1,
+            'url'=>'http://vaulty.loc/View/upload.php'
+        ));
+        return;
     }
-    else{
-        echo "<div class=\"alert alert-danger\"><strong>Inputs are not valid! Try again!</strong></div>";
+    else {
+        return "Error in logging in";
     }
+} else {
+    $vw=new View();
+    $vw->getView('login');
 
-} elseif (isset($_POST['usernameR'])&&($_POST['passwordR'])&&($_POST['emailR'])){
+    if(isset($_POST['username'])&&($_POST['password'])){
 
-    $usernameR=htmlentities($_POST['usernameR']);
-    $passwordR=htmlentities($_POST['passwordR']);
-    $passwordRP=htmlentities($_POST['passwordRP']);
-    $emailR=htmlentities($_POST['emailR']);
+        $username=htmlentities($_POST['username']);
+        $password=htmlentities($_POST['password']);
 
-    if(Validation::validUsername($usernameR) && Validation::validPassword($passwordR) && Validation::validEmail($emailR) && Validation::matchPassword($passwordR,$passwordRP)) {
+        $login=new AuthController();
+        if($login->loginAction($username,$password)==true) {
 
-        $register = new RegisterController();
-        $register->RegisterUser($usernameR, $passwordR, $emailR);
-        $register->sendMail();
+            $db=new Database();
+            $result=$db->execute_query("select * from user where username=:username", array('username'=>$username));
 
-    }else{
+            $_SESSION["username"] = $username;
+            $_SESSION["role"] = $result["role"];
+            $_SESSION["user_ID"]=$result["user_ID"];
 
-        echo "<div class=\"alert alert-danger\"><strong>Inputs are not valid! Try again!</strong></div>";
+            Redirect::redirectUrl('upload.php');
+
+            //setcookie('username', $username, time() + (86400 * 30), "/");
+        }
+        else{
+            echo "<div class=\"alert alert-danger\"><strong>Inputs are not valid! Try again!</strong></div>";
+        }
+
+    } else if (isset($_POST['usernameR'])&&($_POST['passwordR'])&&($_POST['emailR'])){
+
+        $usernameR=htmlentities($_POST['usernameR']);
+        $passwordR=htmlentities($_POST['passwordR']);
+        $passwordRP=htmlentities($_POST['passwordRP']);
+        $emailR=htmlentities($_POST['emailR']);
+
+        if(Validation::validUsername($usernameR) && Validation::validPassword($passwordR) && Validation::validEmail($emailR) && Validation::matchPassword($passwordR,$passwordRP)) {
+
+            $register = new RegisterController();
+            $register->RegisterUser($usernameR, $passwordR, $emailR);
+            $register->sendMail();
+
+        }else{
+
+            echo "<div class=\"alert alert-danger\"><strong>Inputs are not valid! Try again!</strong></div>";
+        }
     }
 }
+
+
 
 ?>
