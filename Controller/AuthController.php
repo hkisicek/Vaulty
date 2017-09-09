@@ -24,8 +24,8 @@ class AuthController
      */
     public function loginAction($username, $password)
     {
-        $db=new Database();
-        $result=$db->execute_query("select * from user where username=:username", array('username'=>$username));
+
+        $result=Database::execute_query("select * from user where username=:username", array('username'=>$username));
 
         if(!empty($result)) {
 

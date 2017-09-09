@@ -19,8 +19,7 @@ class DownloadController
     public static function countDownloads($file)
     {
         try {
-            $db=new Database();
-            $db->insert_row("update asset set downloaded=downloaded+1 where reference=:file", array('file'=>$file));
+            Database::insert_row("update asset set downloaded=downloaded+1 where reference=:file", array('file'=>$file));
 
         } catch (Exception $e){
             $e->getMessage();

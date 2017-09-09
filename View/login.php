@@ -1,11 +1,10 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
-include_once ('test.php');
+
 Session::startSession();
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
 
 $vw=new View();
 $vw->getView('login');

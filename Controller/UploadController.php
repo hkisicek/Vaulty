@@ -5,13 +5,14 @@
  * Date: 8/11/17
  * Time: 11:24 AM
  */
-if(session_status()===PHP_SESSION_NONE){
-    session_start();
-}
+
+include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
+
+Session::startSession();
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
+
 
 class UploadController
 {
@@ -72,8 +73,7 @@ class UploadController
                 echo "<div class=\"alert alert-info\" style='bottom: 0;'><strong>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</strong></div>";
 
                 try{
-                    $db=new Database();
-                    $db->insert_row("insert into asset (asset_id, title, mime_type, size, public, user, downloaded, reference, description) values(
+                    Database::insert_row("insert into asset (asset_id, title, mime_type, size, public, user, downloaded, reference, description) values(
                 default,:title,:type,:size,:public,:user,0,:reference,:description)",
                         array('title'=>$title,
                             'type'=>$imageFileType,

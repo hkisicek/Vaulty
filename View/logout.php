@@ -1,7 +1,10 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
-session_start();
-session_unset();
+
+Session::startSession();
+
+Session::destroy();
+
 Redirect::redirectUrl('login.php');
 
 ?>

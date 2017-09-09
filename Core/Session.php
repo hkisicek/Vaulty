@@ -61,6 +61,7 @@ class Session
             setcookie(session_name(), "", time() - 42000, "/");
 
             session_destroy();
+            session_unset();
         }
     }
     /**

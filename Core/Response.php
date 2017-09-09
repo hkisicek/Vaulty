@@ -9,8 +9,7 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
     $username=$_POST["username"];
     $password=$_POST["password"];
 
-    $db = new Database();
-    $result=$db->execute_query("select * from user where username=:username", array('username'=>$username));
+    $result=Database::execute_query("select * from user where username=:username", array('username'=>$username));
 
     if($result) {
 
