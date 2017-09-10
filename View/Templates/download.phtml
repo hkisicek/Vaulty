@@ -1,12 +1,14 @@
 <?php
+include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
+
 if(session_status()===PHP_SESSION_NONE) {
-session_start();
+    Session::startSession();
+
 }elseif(session_status()===PHP_SESSION_ACTIVE) {
-$role = $_SESSION["role"];
-$username = $_SESSION["username"];
+    $role = $_SESSION["role"];
+    $username = $_SESSION["username"];
 }
-$db=new Database();
-$result=$db->query_execute("select * from asset where public='1'");
+$result=Database::query_execute("select * from asset where public='1'");
 ?>
 <html>
 <head>
