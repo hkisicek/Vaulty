@@ -1,10 +1,8 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
+Session::startSession();
 
-if(session_status()===PHP_SESSION_NONE) {
-    Session::startSession();
-
-}elseif(session_status()===PHP_SESSION_ACTIVE) {
+if(session_status()===PHP_SESSION_ACTIVE) {
     $role = $_SESSION["role"];
     $username = $_SESSION["username"];
 }
@@ -56,9 +54,9 @@ $result=Database::query_execute("select * from asset where public='1'");
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-brand-centered">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="upload.php">Upload</a></li>
-                    <li><a href="download.php">Download</a></li>
-                    <li><a href="logout.php">Logout</a></li>
+                    <li><a href="/upload">Upload</a></li>
+                    <li><a href="/download">Download</a></li>
+                    <li><a href="/logout">Logout</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -96,7 +94,7 @@ $result=Database::query_execute("select * from asset where public='1'");
             <td>'.$item['description'].'</td>
             <td>'.$item['user'].'</td>
             <td>'.$item['downloaded'].'</td>
-            <td><a href="download.php?file='.$item['reference'].'">Download</a></td>';
+            <td><a href="/download/submit/file='.$item['reference'].'">Download</a></td>';
             echo '</tr>';
         }
         echo '</tbody>';

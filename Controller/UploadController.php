@@ -8,16 +8,17 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
 
-Session::startSession();
-
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-
-class UploadController
+class UploadController extends Controller
 {
-    public function getFileExtension(){
-
+    /**
+     *retrieving view
+     */
+    public static function index()
+    {
+        View::getView('upload');
     }
 
     public static function createDir(){
@@ -29,7 +30,7 @@ class UploadController
         }
     }
 
-    public static function UploadFile(){
+    public static function uploadFile(){
 
         $uploadOk = 1;
         self::createDir();
@@ -37,6 +38,7 @@ class UploadController
         $target_dir = $_SERVER['DOCUMENT_ROOT']."/uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $target_name=basename($_FILES["fileToUpload"]["name"]);
+        $reference=Hash::createImageCode();
 
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
         echo $imageFileType;
@@ -80,7 +82,7 @@ class UploadController
                             'size'=>$fileSize,
                             'public'=>$public,
                             'user'=>$_SESSION['user_ID'],
-                            'reference'=>$target_name,
+                            'reference'=>$reference,
                             'description'=>$description));
                 }
 

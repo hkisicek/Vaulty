@@ -47,4 +47,13 @@ class Hash
 
         return password_verify($password,$hash);
     }
+
+    public static function createImageCode()
+    {
+        $date = (string)date('YmdHis');
+        $code=self::generateCode(5);
+        $result=$date.$code;
+
+        return $result;
+    }
 }

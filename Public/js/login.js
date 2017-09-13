@@ -11,7 +11,7 @@ $(document).ready(function() {
                 data=JSON.parse(data);
 
                 if (data.flag==="true") {
-                  window.location = '/View/upload.php';
+                  window.location = '/upload';
                 }
                 else {
                     console.log('Invalid Credentials');

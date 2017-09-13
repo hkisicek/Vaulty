@@ -6,15 +6,20 @@
  * Time: 9:21 AM
  */
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
-/*if($_SERVER["HTTPS"] != "on")
-{
-    header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
-    exit();
-}*/
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
 
-Redirect::redirectUrl('/View/login.php');
+$router=new Router();
+$router->add('/','LoginController#index');
+$router->add('/home','LoginController#index');
+$router->add('/home/register','LoginController#register');
+$router->add('/upload','UploadController#index');
+$router->add('/upload/submit','UploadController#uploadFile');
+$router->add('/download','DownloadController#index');
+$router->add('/download/submit','DownloadController#download');
+$router->add('/logout','LogoutController#logout');
+
+$router->dispatch();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);

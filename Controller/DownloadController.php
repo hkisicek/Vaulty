@@ -11,8 +11,15 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-class DownloadController
+class DownloadController extends Controller
 {
+    /**
+     *retrieving view
+     */
+    public static function index()
+    {
+        View::getView('download');
+    }
     /**
      * @param $file
      */
@@ -28,7 +35,7 @@ class DownloadController
     /**
      * @param $file
      */
-    public static function forceDownload($file)
+    public static function download($file)
     {
         $targetFile = $_SERVER['DOCUMENT_ROOT']."/uploads/".$file;
         if (!file_exists($targetFile)) {
