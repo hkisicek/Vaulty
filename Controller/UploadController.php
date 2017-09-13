@@ -11,13 +11,14 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-class UploadController extends Controller
+class UploadController
 {
     /**
      *retrieving view
      */
     public static function index()
     {
+        Session::startSession();
         View::getView('upload');
     }
 
@@ -95,5 +96,7 @@ class UploadController extends Controller
                 echo "<div class=\"alert alert-danger\"><strong>Sorry, there was an error uploading your file.</strong></div>";
             }
         }
+
+        Redirect::redirectUrl('/upload');
     }
 }

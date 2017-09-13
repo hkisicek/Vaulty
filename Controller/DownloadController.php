@@ -11,13 +11,14 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-class DownloadController extends Controller
+class DownloadController
 {
     /**
      *retrieving view
      */
     public static function index()
     {
+        Session::startSession();
         View::getView('download');
     }
     /**

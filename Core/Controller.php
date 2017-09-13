@@ -6,7 +6,10 @@
  * Time: 9:34 PM
  */
 
-class Controller
+abstract class Controller
 {
+    public function __construct()
+    {
 
+    }
 }

@@ -10,13 +10,7 @@ class LogoutController extends Controller
 {
     public function logout()
     {
-        if (AuthController::$logged==true){
-
-            session_destroy();
-            AuthController::$logged=false;
-
-        }else{
-            echo "You're not logged in.";
-        }
+        Session::destroy();
+        Redirect::redirectUrl('/home');
     }
 }

@@ -6,13 +6,14 @@
  * Time: 5:52 PM
  */
 
-class LoginController extends Controller
+class LoginController
 {
     /**
      *retrieving view
      */
     public function index()
     {
+        Session::startSession();
         View::getView('login');
     }
     /**
