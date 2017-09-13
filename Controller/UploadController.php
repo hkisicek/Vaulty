@@ -33,6 +33,7 @@ class UploadController
 
     public static function uploadFile(){
 
+        Session::startSession();
         $uploadOk = 1;
         self::createDir();
 
