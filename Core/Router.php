@@ -69,7 +69,7 @@ class Router
                 //Call controller and coresponding method
 
                 call_user_func(array($this->router, $this->method));
-            } elseif ($numElements>2) {
+            } elseif (isset($_GET['file'])) {
 
                 $this->router = 'DownloadController';
                 $this->method = 'download';

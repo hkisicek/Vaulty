@@ -39,6 +39,7 @@ class UploadController
      */
     public static function uploadFile(){
 
+        Session::startSession();
         if(!isset($_SESSION['username'])){
             Redirect::redirectUrl('/home');
         }
@@ -50,8 +51,8 @@ class UploadController
         $uploadOk = 1;
 
         $target_dir = $_SERVER['DOCUMENT_ROOT']."/uploads/";
-      //  $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        $target_file = $target_dir . $reference;
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        //$target_file = $target_dir . $reference;
         $target_name=basename($_FILES["fileToUpload"]["name"]);
 
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -96,7 +97,7 @@ class UploadController
                             'size'=>$fileSize,
                             'public'=>$public,
                             'user'=>'7',
-                            'reference'=>$reference,
+                            'reference'=>$target_name,
                             'description'=>$description));
                 }
 

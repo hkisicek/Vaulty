@@ -93,7 +93,7 @@ $result=Database::query_execute("select * from asset where public='1'");
             <td>'.$item['description'].'</td>
             <td>'.$item['user'].'</td>
             <td>'.$item['downloaded'].'</td>
-            <td><a href="/download/submit/file='.$item['reference'].'">Download</a></td>';
+            <td><a href="/download/submit/?file='.$item['reference'].'">Download</a></td>';
             echo '</tr>';
         }
         echo '</tbody>';
