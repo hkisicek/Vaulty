@@ -8,6 +8,9 @@
 
 class LogoutController extends Controller
 {
+    /**
+     *logout function
+     */
     public function logout()
     {
         Session::destroy();

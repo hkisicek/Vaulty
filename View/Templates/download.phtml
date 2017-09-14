@@ -1,10 +1,9 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
-Session::startSession();
-
-if(session_status()===PHP_SESSION_ACTIVE) {
-    $role = $_SESSION["role"];
-    $username = $_SESSION["username"];
+if(!isset($_SESSION['username'])){
+    Redirect::redirectUrl('/home');
+}
+else{
+    $username=$_SESSION['username'];
 }
 $result=Database::query_execute("select * from asset where public='1'");
 ?>

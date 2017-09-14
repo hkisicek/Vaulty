@@ -1,9 +1,10 @@
 <?php
-if(session_status()===PHP_SESSION_NONE) {
-    session_start();
-}elseif(isset($_SESSION["role"]) && isset($_SESSION["username"])) {
-    $role = $_SESSION["role"];
-    $username = $_SESSION["username"];
+
+if(!isset($_SESSION['username'])){
+    Redirect::redirectUrl('/home');
+}
+else{
+    $username=$_SESSION['username'];
 }
 ?>
 <html>
@@ -102,7 +103,7 @@ if(session_status()===PHP_SESSION_NONE) {
     <style>
         form{
             position:relative;
-            top: 50%;
+           /* top: 50%;*/
             left: 25%;
             right:25%;
             width:50%;

@@ -36,8 +36,14 @@ class DownloadController
     /**
      * @param $file
      */
-    public static function download($file)
+    public static function download()
     {
+        Session::startSession();
+        if(!isset($_SESSION['username'])){
+            Redirect::redirectUrl('/home');
+        }
+
+        $file=$_GET['file'];
         $targetFile = $_SERVER['DOCUMENT_ROOT']."/uploads/".$file;
         if (!file_exists($targetFile)) {
             die("Sorry, file doesn't exist. :(");
@@ -84,5 +90,6 @@ class DownloadController
         }catch (Exception $e){
             $e->getMessage();
         }
+        self::countDownloads($file);
     }
 }

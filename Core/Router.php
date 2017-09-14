@@ -14,6 +14,10 @@ class Router
     protected $router='LoginController';
     protected $method='index';
 
+    /**
+     * @param $url
+     * @param $action
+     */
     public function add($url, $action)
     {
        $this->urls[]=$url;
@@ -22,7 +26,9 @@ class Router
             $this->actions[]=$action;
         }
     }
-
+    /**
+     * @return bool|string
+     */
     function getCurrentUri()
     {
         $basepath = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
@@ -36,19 +42,39 @@ class Router
         return $uri;
     }
 
+    function breakUri()
+    {
+        $url=$this->getCurrentUri();
+        $splitUrl=explode('/',$url);
+
+        return $splitUrl;
+    }
+    /**
+     *compares predefined routes and current url
+     */
     public function dispatch(){
 
         $url=$this->getCurrentUri();
+        $arrayUri=$this->breakUri();
+        $numElements=count($arrayUri);
 
-        foreach($this->urls as $key=>$value){
-            if ($value==$url){
+        foreach($this->urls as $key=>$value) {
+            if ($value == $url) {
 
-                $action=explode('#',$this->actions[$key]);
+                $action = explode('#', $this->actions[$key]);
 
-                $this->router=$action[0];
-                $this->method=$action[1];
+                $this->router = $action[0];
+                $this->method = $action[1];
 
-                call_user_func(array($this->router,$this->method));
+                //Call controller and coresponding method
+
+                call_user_func(array($this->router, $this->method));
+            } elseif ($numElements>2) {
+
+                $this->router = 'DownloadController';
+                $this->method = 'download';
+
+                call_user_func(array($this->router, $this->method));
             }
         }
     }

@@ -22,6 +22,9 @@ class UploadController
         View::getView('upload');
     }
 
+    /**
+     *Creates directory if needed
+     */
     public static function createDir(){
 
         $path=$_SERVER['DOCUMENT_ROOT']."/uploads";
@@ -31,16 +34,25 @@ class UploadController
         }
     }
 
+    /**
+     *Method that handles file upload
+     */
     public static function uploadFile(){
 
+        if(!isset($_SESSION['username'])){
+            Redirect::redirectUrl('/home');
+        }
+
         Session::startSession();
-        $uploadOk = 1;
+        $reference=Hash::createFileCode();
         self::createDir();
 
+        $uploadOk = 1;
+
         $target_dir = $_SERVER['DOCUMENT_ROOT']."/uploads/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+      //  $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $target_file = $target_dir . $reference;
         $target_name=basename($_FILES["fileToUpload"]["name"]);
-        $reference=Hash::createImageCode();
 
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
         echo $imageFileType;
@@ -83,7 +95,7 @@ class UploadController
                             'type'=>$imageFileType,
                             'size'=>$fileSize,
                             'public'=>$public,
-                            'user'=>$_SESSION['user_ID'],
+                            'user'=>'7',
                             'reference'=>$reference,
                             'description'=>$description));
                 }

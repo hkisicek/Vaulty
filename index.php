@@ -6,8 +6,6 @@
  * Time: 9:21 AM
  */
 
-
-
 include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
 
 $router=new Router();

@@ -22,6 +22,7 @@ class Session
     {
         if (false === self::$_started) {
             session_start();
+
             self::$_started = true;
         }
     }
@@ -55,14 +56,14 @@ class Session
      */
     public static function destroy()
     {
-        if (self::$_started == true) {
-            $_SESSION = array();
+     //   if (self::$_started == true) {
+            //$_SESSION = array();
 
-            setcookie(session_name(), "", time() - 42000, "/");
+            //setcookie(session_name(), "", time() - 42000, "/");
 
-            session_destroy();
+            //session_destroy();
             session_unset();
-        }
+     //   }
     }
     /**
      * @param $type
@@ -81,5 +82,4 @@ class Session
         unset($_SESSION['flashClass']);
         unset($_SESSION['flashMessage']);
     }
-
 }

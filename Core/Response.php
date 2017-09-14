@@ -28,7 +28,6 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
     }
     else{
         $data["flag"]="false";
-
     }
     echo json_encode($data);
 }
