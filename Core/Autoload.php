@@ -8,6 +8,7 @@
 
 function __autoload($class)
 {
+    //array of directories to search scripts in
     $dirs = array(
         '/Controller/',
         '/Core/',

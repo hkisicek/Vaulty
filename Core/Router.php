@@ -5,7 +5,13 @@
  * Date: 9/13/17
  * Time: 6:16 PM
  */
+include_once $_SERVER['DOCUMENT_ROOT'].'/config.php';
 
+/**
+ * Class Router
+ *
+ * Handles routing
+ */
 class Router
 {
     protected $urls=array();
@@ -15,6 +21,8 @@ class Router
     protected $method='index';
 
     /**
+     * Adds routes
+     *
      * @param $url
      * @param $action
      */
@@ -27,6 +35,8 @@ class Router
         }
     }
     /**
+     * Gets the current uri
+     *
      * @return bool|string
      */
     function getCurrentUri()
@@ -42,6 +52,11 @@ class Router
         return $uri;
     }
 
+    /**
+     * Explodes current uri
+     *
+     * @return array
+     */
     function breakUri()
     {
         $url=$this->getCurrentUri();
@@ -50,13 +65,11 @@ class Router
         return $splitUrl;
     }
     /**
-     *compares predefined routes and current url
+     *Compares predefined routes and current url
      */
     public function dispatch(){
 
         $url=$this->getCurrentUri();
-        $arrayUri=$this->breakUri();
-        $numElements=count($arrayUri);
 
         foreach($this->urls as $key=>$value) {
             if ($value == $url) {
@@ -67,7 +80,6 @@ class Router
                 $this->method = $action[1];
 
                 //Call controller and coresponding method
-
                 call_user_func(array($this->router, $this->method));
             } elseif (isset($_GET['file'])) {
 

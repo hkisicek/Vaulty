@@ -5,13 +5,11 @@
  * Date: 8/11/17
  * Time: 11:25 AM
  */
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 class Hash
 {
     /**
+     * Creates password hash
+     *
      * @param $password
      * @return bool|string
      */
@@ -21,6 +19,8 @@ class Hash
         return $pass;
     }
     /**
+     * Generates code
+     *
      * @param $qtd
      * @return null|string
      */
@@ -39,6 +39,8 @@ class Hash
         return $hash;
     }
     /**
+     * Checks if password and given hash match
+     *
      * @param $password
      * @param $hash
      * @return bool
@@ -48,6 +50,11 @@ class Hash
         return password_verify($password,$hash);
     }
 
+    /**
+     * Creates code for uploaded files
+     *
+     * @return string
+     */
     public static function createFileCode()
     {
         $date = (string)date('YmdHis');

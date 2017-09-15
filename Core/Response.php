@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: helena
+ * Date: 8/11/17
+ * Time: 11:24 AM
+ *
+ * Script that handles user login
+ */
 include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
 
 Session::startSession();

@@ -6,9 +6,6 @@
  * Time: 11:25 AM
  */
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 /**
  * Class Session
  */
@@ -16,7 +13,7 @@ class Session
 {
     protected static $_started = false;
     /**
-     * Function for starting session
+     * Function that starts session
      */
     public static function startSession()
     {
@@ -56,14 +53,14 @@ class Session
      */
     public static function destroy()
     {
-     //   if (self::$_started == true) {
-            //$_SESSION = array();
+     if (self::$_started == true) {
+         $_SESSION = array();
 
-            //setcookie(session_name(), "", time() - 42000, "/");
+         //setcookie(session_name(), "", time() - 42000, "/");
 
-            //session_destroy();
-            session_unset();
-     //   }
+         session_destroy();
+         session_unset();
+       }
     }
     /**
      * @param $type

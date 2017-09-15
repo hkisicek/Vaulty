@@ -9,6 +9,8 @@
 class Redirect{
 
     /**
+     * Redirects to given url
+     *
      * @param $url
      */
     public static function redirectUrl($url)

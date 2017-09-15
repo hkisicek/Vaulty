@@ -5,12 +5,7 @@
  * Date: 8/11/17
  * Time: 11:24 AM
  */
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 include_once $_SERVER['DOCUMENT_ROOT'].'/config.php';
-
 /**
  * Class Database
  */

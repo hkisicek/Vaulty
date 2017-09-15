@@ -7,14 +7,13 @@
  */
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
+/**
+ * Class UploadController
+ */
 class UploadController
 {
     /**
-     *retrieving view
+     *Retrieves view
      */
     public static function index()
     {
@@ -25,7 +24,7 @@ class UploadController
     /**
      *Creates directory if needed
      */
-    public static function createDir(){
+    public static function createDirAction(){
 
         $path=$_SERVER['DOCUMENT_ROOT']."/uploads";
 
@@ -37,7 +36,7 @@ class UploadController
     /**
      *Method that handles file upload
      */
-    public static function uploadFile(){
+    public static function uploadAction(){
 
         Session::startSession();
         if(!isset($_SESSION['username'])){
@@ -45,14 +44,12 @@ class UploadController
         }
 
         Session::startSession();
-        $reference=Hash::createFileCode();
-        self::createDir();
+        self::createDirAction();
 
         $uploadOk = 1;
 
         $target_dir = $_SERVER['DOCUMENT_ROOT']."/uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        //$target_file = $target_dir . $reference;
         $target_name=basename($_FILES["fileToUpload"]["name"]);
 
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -110,7 +107,6 @@ class UploadController
                 echo "<div class=\"alert alert-danger\"><strong>Sorry, there was an error uploading your file.</strong></div>";
             }
         }
-
         Redirect::redirectUrl('/upload');
     }
 }

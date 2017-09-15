@@ -5,16 +5,16 @@
  * Date: 8/11/17
  * Time: 11:24 AM
  */
-
 include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
+/**
+ * Class DownloadController
+ *
+ * Class that handles downloads
+ */
 class DownloadController
 {
     /**
-     *retrieving view
+     *Retrieves downloads view
      */
     public static function index()
     {
@@ -22,9 +22,11 @@ class DownloadController
         View::getView('download');
     }
     /**
+     * Increments the number of downloads for certain file
+     *
      * @param $file
      */
-    public static function countDownloads($file)
+    public static function countAction($file)
     {
         try {
             Database::insert_row("update asset set downloaded=downloaded+1 where reference=:file", array('file'=>$file));
@@ -34,9 +36,11 @@ class DownloadController
         }
     }
     /**
+     * Moves the selected file in /uploads folder and inserts info in db
+     *
      * @param $file
      */
-    public static function download()
+    public static function downloadAction()
     {
         Session::startSession();
         if(!isset($_SESSION['username'])){
@@ -90,6 +94,6 @@ class DownloadController
         }catch (Exception $e){
             $e->getMessage();
         }
-        self::countDownloads($file);
+        self::countAction($file);
     }
 }
