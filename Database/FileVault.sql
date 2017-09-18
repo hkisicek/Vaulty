@@ -39,8 +39,6 @@ CREATE TABLE `asset` (
 -- Dumping data for table `asset`
 --
 
-INSERT INTO `asset` (`asset_ID`, `title`, `mime_type`, `size`, `public`, `user`, `downloaded`, `reference`, `description`) VALUES();
-
 -- --------------------------------------------------------
 
 --

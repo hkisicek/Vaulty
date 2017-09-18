@@ -53,7 +53,6 @@ class UploadController
         $target_name=basename($_FILES["fileToUpload"]["name"]);
 
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-        echo $imageFileType;
         $fileSize=$_FILES["fileToUpload"]["size"];
 
         $title=htmlentities($_POST['title']);
@@ -64,27 +63,27 @@ class UploadController
         // Check if file already exists
         if (file_exists($target_file)) {
 
-            echo "<div class=\"alert alert-danger\"><strong>Sorry, file already exists.</strong></div>";
+           // echo "<div class=\"alert alert-danger\"><strong>Sorry, file already exists.</strong></div>";
             $uploadOk = 0;
         }
 
         // Check file size
         if ($_FILES["fileToUpload"]["size"] > 1073741824) {
 
-            echo "<div class=\"alert alert-danger\"><strong>Sorry, your file is too large.</strong></div>";
+          //  echo "<div class=\"alert alert-danger\"><strong>Sorry, your file is too large.</strong></div>";
             $uploadOk = 0;
         }
 
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
 
-            echo "<div class=\"alert alert-danger\"><strong>Sorry, your file was not uploaded.</strong></div>";
+            //echo "<div class=\"alert alert-danger\"><strong>Sorry, your file was not uploaded.</strong></div>";
 
         } else {
 
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
-                echo "<div class=\"alert alert-info\" style='bottom: 0;'><strong>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</strong></div>";
+                //echo "<div class=\"alert alert-info\" style='bottom: 0;'><strong>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</strong></div>";
 
                 try{
                     Database::insert_row("insert into asset (asset_id, title, mime_type, size, public, user, downloaded, reference, description) values(
@@ -104,7 +103,7 @@ class UploadController
                 }
             } else {
 
-                echo "<div class=\"alert alert-danger\"><strong>Sorry, there was an error uploading your file.</strong></div>";
+               // echo "<div class=\"alert alert-danger\"><strong>Sorry, there was an error uploading your file.</strong></div>";
             }
         }
         Redirect::redirectUrl('/upload');
