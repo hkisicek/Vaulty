@@ -14,7 +14,7 @@ class Validation
      */
     public static function validUsername($username){
 
-        if(preg_match('/^[a-zA-Z0-9]*_?[a-zA-Z0-9]*$/',$username)){
+        if(preg_match('/^[a-zA-Z0-9_-]{3,15}$/',$username)){
             return true;
         }
     }
@@ -34,7 +34,7 @@ class Validation
      */
     public static function validPassword($password){
 
-        if(preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/',$password)){
+        if(preg_match('/^([a-zA-Z0-9@*#]{5,15})$/',$password)){
             return true;
         }
     }

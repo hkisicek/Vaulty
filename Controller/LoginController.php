@@ -47,8 +47,8 @@ class LoginController
                 'username'=>$usernameR));
 
         }else{
-            Redirect::redirectUrl('/home');
-            //echo "<div class=\"alert alert-danger\"><strong>Inputs are not valid! Try again!</strong></div>";
+            $parameter="";
+            Redirect::redirectUrl('/home',$parameter);
         }
     }
 }

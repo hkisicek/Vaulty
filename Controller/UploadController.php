@@ -7,6 +7,7 @@
  */
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/Core/Autoload.php';
+error_reporting(E_ALL);
 /**
  * Class UploadController
  */
@@ -38,9 +39,11 @@ class UploadController
      */
     public static function uploadAction(){
 
+        $parameter="";
+
         Session::startSession();
         if(!isset($_SESSION['username'])){
-            Redirect::redirectUrl('/home');
+            Redirect::redirectUrl('/home',$parameter);
         }
 
         Session::startSession();
@@ -62,50 +65,43 @@ class UploadController
 
         // Check if file already exists
         if (file_exists($target_file)) {
-
-           // echo "<div class=\"alert alert-danger\"><strong>Sorry, file already exists.</strong></div>";
             $uploadOk = 0;
+            $parameter="u1";
         }
 
         // Check file size
         if ($_FILES["fileToUpload"]["size"] > 1073741824) {
-
-          //  echo "<div class=\"alert alert-danger\"><strong>Sorry, your file is too large.</strong></div>";
             $uploadOk = 0;
+            $parameter="u2";
         }
 
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
-
-            //echo "<div class=\"alert alert-danger\"><strong>Sorry, your file was not uploaded.</strong></div>";
-
+            $parameter="u3";
         } else {
 
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
-                //echo "<div class=\"alert alert-info\" style='bottom: 0;'><strong>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</strong></div>";
-
-                try{
+                try {
                     Database::insert_row("insert into asset (asset_id, title, mime_type, size, public, user, downloaded, reference, description) values(
                 default,:title,:type,:size,:public,:user,0,:reference,:description)",
-                        array('title'=>$title,
-                            'type'=>$imageFileType,
-                            'size'=>$fileSize,
-                            'public'=>$public,
-                            'user'=>'7',
-                            'reference'=>$target_name,
-                            'description'=>$description));
-                }
-
-                catch (Exception $exception){
-                    echo $exception->getMessage();
-                    $uploadOk=0;
+                        array('title' => $title,
+                            'type' => $imageFileType,
+                            'size' => $fileSize,
+                            'public' => $public,
+                            'user' => '7',
+                            'reference' => $target_name,
+                            'description' => $description));
+                    $parameter="u5";
+                } catch (Exception $exception) {
+                   // echo $exception->getMessage();
+                    $parameter="u4";
+                    $uploadOk = 0;
                 }
             } else {
-
-               // echo "<div class=\"alert alert-danger\"><strong>Sorry, there was an error uploading your file.</strong></div>";
+                $parameter="u4";
             }
         }
-        Redirect::redirectUrl('/upload');
+        Redirect::redirectUrl('/upload',$parameter);
     }
 }

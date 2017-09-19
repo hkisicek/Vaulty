@@ -29,7 +29,7 @@ class DownloadController
     public static function countAction($file)
     {
         try {
-            Database::insert_row("update asset set downloaded=downloaded+1 where reference=:file", array('file'=>$file));
+            Database::execute_query("update asset set downloaded=downloaded+1 where reference=:file", array('file'=>$file));
 
         } catch (Exception $e){
             $e->getMessage();
@@ -42,9 +42,11 @@ class DownloadController
      */
     public static function downloadAction()
     {
+        $parameter="";
+
         Session::startSession();
         if(!isset($_SESSION['username'])){
-            Redirect::redirectUrl('/home');
+            Redirect::redirectUrl('/home',$parameter);
         }
 
         $file=$_GET['file'];
@@ -87,13 +89,16 @@ class DownloadController
                 $buffer = fread($fd, 2048);
                 echo $buffer;
             }
+        }else{
+
         }
         fclose($fd);
+        self::countAction($file);
         exit;
 
         }catch (Exception $e){
             $e->getMessage();
         }
-        self::countAction($file);
+
     }
 }

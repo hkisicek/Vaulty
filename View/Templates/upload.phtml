@@ -36,7 +36,11 @@ else{
 </head>
 <style>
 .container{
-width: 100%;
+
+}
+
+#warningLogin1{
+    margin-top: -1.5em !important;
 }
 .form{
 left: 25%;
@@ -44,6 +48,7 @@ right: 25%;
 }
 </style>
 <body>
+
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -67,6 +72,9 @@ right: 25%;
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
+
+    <div id="warningLogin1" class="alert alert-danger"></div>
+    <div id="warningLogin2" class="alert alert-success"></div>
 
     <div class="container">
         <div class="row">
@@ -111,6 +119,7 @@ right: 25%;
         <input type="file" name="fileToUpload" id="fileToUpload" required>
         <input type="submit" class="btn btn-primary" value="Upload File" name="submit">
     </form>
+
 <svg id="svg-source" height="0" version="1.1"
      xmlns="http://www.w3.org/2000/svg" style="position:absolute; margin-left: -100%"
      xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -357,5 +366,6 @@ right: 25%;
     </g>
 </svg>
 </div>
+<script src="/Public/js/warning.js"></script>
 </body>
 </html>

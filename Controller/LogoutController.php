@@ -16,7 +16,9 @@ class LogoutController extends Controller
      */
     public function logoutAction()
     {
+        $parameter="";
+
         Session::destroy();
-        Redirect::redirectUrl('/home');
+        Redirect::redirectUrl('/home',$parameter);
     }
 }

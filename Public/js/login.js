@@ -15,8 +15,9 @@ $(document).ready(function() {
                 }
                 else {
                     console.log('Invalid Credentials');
-                    var div = document.getElementById('warningLogin');
-                    div.innerHTML += 'Inputs are not valid! Try again!';
+                    var div = document.getElementById('warningLogin1');
+                    div.innerHTML = 'Inputs are not valid! Try again!';
+                    div.style.display="block";
                 }
             }
         });

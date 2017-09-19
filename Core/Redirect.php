@@ -13,12 +13,16 @@ class Redirect{
      *
      * @param $url
      */
-    public static function redirectUrl($url)
+    public static function redirectUrl($url,$parameter)
     {
-        if (!headers_sent())
-        {
-            header('Location: '.$url);
-            exit;
+        if (!headers_sent()) {
+            if ($parameter != "") {
+                header('Location: ' . $url . '?problem=' . $parameter);
+                exit;
+            }else {
+                header('Location: ' . $url);
+                exit;
+            }
 
         }else {
 
@@ -27,7 +31,8 @@ class Redirect{
             echo '</script>';
             echo '<noscript>';
             echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
-            echo '</noscript>'; exit;
+            echo '</noscript>';
+            exit;
         }
     }
 }
