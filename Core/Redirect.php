@@ -16,10 +16,15 @@ class Redirect{
     public static function redirectUrl($url,$parameter)
     {
         if (!headers_sent()) {
-            if ($parameter != "") {
+            if ($parameter == "") {
+                header('Location: ' . $url);
+                exit;
+
+            }else if($parameter!="") {
                 header('Location: ' . $url . '?problem=' . $parameter);
                 exit;
-            }else {
+
+            }else{
                 header('Location: ' . $url);
                 exit;
             }

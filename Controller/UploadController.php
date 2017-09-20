@@ -89,7 +89,7 @@ class UploadController
                             'type' => $imageFileType,
                             'size' => $fileSize,
                             'public' => $public,
-                            'user' => '7',
+                            'user' => $_SESSION['user_ID'],
                             'reference' => $target_name,
                             'description' => $description));
                     $parameter="u5";
