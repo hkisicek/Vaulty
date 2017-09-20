@@ -28,7 +28,7 @@ if(result=="u1"){
     $("#warningLogin2").hide();
     div.innerHTML = 'Cannot upload your file! :(';
     $("#warningLogin1").show();
-}else if(result=="u5"){
+}else if(result=="u5") {
     $("#warningLogin1").hide();
     divv.innerHTML = 'File uploaded successfully!';
     $("#warningLogin2").show();

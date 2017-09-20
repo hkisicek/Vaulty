@@ -16,7 +16,7 @@ $(document).ready(function() {
                 else {
                     console.log('Invalid Credentials');
                     var div = document.getElementById('warningLogin1');
-                    div.innerHTML = 'Inputs are not valid! Try again!';
+                    div.innerHTML = 'Given credentials are not correct! Try again!';
                     div.style.display="block";
                 }
             }

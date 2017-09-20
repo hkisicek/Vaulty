@@ -34,10 +34,6 @@ class LoginController
         //server side validation
         if(Validation::validUsername($usernameR) && Validation::validPassword($passwordR) && Validation::validEmail($emailR) && Validation::matchPassword($passwordR,$passwordRP)) {
 
-            $register = new RegisterController();
-            $register->RegisterUser($usernameR, $passwordR, $emailR);
-            $register->sendMail();
-
             $hashedPass=Hash::createHash($passwordR);
             Hash::generateCode(15);
 
@@ -45,6 +41,9 @@ class LoginController
                 'email'=>$emailR,
                 'password'=>$hashedPass,
                 'username'=>$usernameR));
+
+            $parameter="";
+            Redirect::redirectUrl('/home',$parameter);
 
         }else{
             $parameter="";

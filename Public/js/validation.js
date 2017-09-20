@@ -30,12 +30,12 @@ $("#emailR").focusout(function (event) {
         $("#emailR").focus();
         $("#emailL").html("<i class=\"glyphicon glyphicon-ban-circle\" style=\"color:darkred\"></i>Invalid email! ");
         $("#emailL").css("color", "#555");
-        flag=false;
+        flag2=false;
     } else {
         $("#emailR").css("box-shadow", "0 0 2px #40B7AE");
         $("#emailL").css("color", "#555");
         $("#emailL").html("<i class=\"glyphicon glyphicon-user\"></i>Email");
-        flag=true;
+        flag2=true;
     }
 });
 
@@ -46,12 +46,12 @@ $("#passwordR").focusout(function (event) {
         $("#passwordR").focus();
         $("#passwordL").html("<i class=\"glyphicon glyphicon-ban-circle\" style=\"color:darkred\"></i>Invalid password! ");
         $("#passwordL").css("color", "#555");
-        flag=false;
+        flag3=false;
     } else {
         $("#passwordR").css("box-shadow", "0 0 2px #40B7AE");
         $("#passwordL").css("color", "#555");
         $("#passwordL").html("<i class=\"glyphicon glyphicon-lock\"></i>Password");
-        flag=true;
+        flag3=true;
     }
 });
 
@@ -63,12 +63,16 @@ $("#passwordRP").focusout(function (event) {
         $("#passwordRP").focus();
         $("#passwordRL").html("<i class=\"glyphicon glyphicon-ban-circle\" style=\"color:darkred\"></i>No match!");
         $("#passwordRL").css("color", "#555");
-        flag=false;
+        flag4=false;
     } else {
         $("#passwordRP").css("box-shadow", "0 0 2px #40B7AE");
         $("#passwordRL").css("color", "#555");
         $("#passwordRL").html("<i class=\"glyphicon glyphicon-lock\"></i>Repeat password");
-        flag=true;
+        flag4=true;
+    }
+
+    if(flag1==true && flag2==true && flag3==true && flag4==true){
+        $("#register").prop("disabled",false);
     }
 });
 

@@ -24,7 +24,7 @@ class Validation
      */
     public static function validEmail($email){
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return true;
         }
     }
